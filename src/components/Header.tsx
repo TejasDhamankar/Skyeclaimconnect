@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -20,6 +21,9 @@ import { cn, getAllCaseTypes } from "@/lib/utils";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
   const caseTypes = getAllCaseTypes();
   const featuredCases = caseTypes.filter((item) =>
     [
@@ -45,6 +49,27 @@ const Header = () => {
     { href: "#claim-process", label: "How It Works" },
     { href: "#faq", label: "FAQ" },
   ];
+
+  const handleMobileNav = (href: string) => {
+    setMobileMenuOpen(false);
+
+    if (href.startsWith("#")) {
+      if (pathname !== "/") {
+        router.push(`/${href}`);
+        return;
+      }
+
+      const target = document.querySelector(href);
+      if (target) {
+        window.setTimeout(() => {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 120);
+      }
+      return;
+    }
+
+    router.push(href);
+  };
 
   return (
     <div className="fixed inset-x-0 top-0 z-50">
@@ -142,7 +167,7 @@ const Header = () => {
           </div>
 
           <div className="lg:hidden">
-            <Sheet>
+            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="rounded-none text-white hover:bg-white/10 hover:text-white">
                   <Menu size={24} />
@@ -155,20 +180,22 @@ const Header = () => {
                 </div>
                 <div className="flex flex-col px-6 py-6">
                   {navItems.map((item) => (
-                    <Link
+                    <button
                       key={item.href}
-                      href={item.href}
+                      type="button"
+                      onClick={() => handleMobileNav(item.href)}
                       className="border-b border-white/10 py-4 text-[13px] uppercase tracking-[0.24em] text-white/80 transition hover:text-[var(--color-accent)]"
                     >
                       {item.label}
-                    </Link>
+                    </button>
                   ))}
-                  <Link
-                    href="#case-evaluation"
+                  <button
+                    type="button"
+                    onClick={() => handleMobileNav("#case-evaluation")}
                     className="mt-8 inline-flex items-center justify-center border border-[rgba(194,148,90,0.65)] px-5 py-4 text-[12px] uppercase tracking-[0.28em] text-white transition hover:bg-[var(--color-accent)] hover:text-primary"
                   >
                     Free Consultation
-                  </Link>
+                  </button>
                 </div>
               </SheetContent>
             </Sheet>
