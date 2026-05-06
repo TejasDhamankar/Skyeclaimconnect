@@ -22,7 +22,6 @@ import {
   User,
   Mail,
   Phone,
-  Scale,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -50,6 +49,10 @@ const CaseEvaluation = () => {
     lastName: "",
     email: "",
     phone: "",
+    street: "",
+    city: "",
+    state: "",
+    zip: "",
     caseType: "",
     exposurePeriod: "",
     medicalCondition: "",
@@ -214,6 +217,10 @@ const CaseEvaluation = () => {
         lastName: "",
         email: "",
         phone: "",
+        street: "",
+        city: "",
+        state: "",
+        zip: "",
         caseType: "",
         exposurePeriod: "",
         medicalCondition: "",
@@ -237,8 +244,8 @@ const CaseEvaluation = () => {
   };
 
   return (
-    <section id="case-evaluation" className="py-20 bg-gradient-to-br from-slate-50 via-white to-cyan-50/40">
-      <div className="container mx-auto px-4">
+    <section id="case-evaluation" className="bg-primary px-4 py-20 text-white md:px-8 md:py-28">
+      <div className="mx-auto max-w-[1400px]">
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
@@ -248,24 +255,24 @@ const CaseEvaluation = () => {
         >
           <Badge
             variant="outline"
-            className="mb-6 px-4 py-2 text-primary border-primary/30 bg-primary/5 font-bold"
+            className="mb-6 rounded-none border-[rgba(194,148,90,0.35)] bg-white/5 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.28em] text-[var(--color-accent)]"
           >
             100% FREE EVALUATION
           </Badge>
 
-          <h2 className="text-4xl md:text-6xl font-black text-primary mb-6 leading-tight">
-            <span className="bg-gradient-to-r from-primary via-cyan-700 to-teal-700 bg-clip-text text-transparent">
+          <h2 className="mb-6 font-serif text-5xl leading-none text-white md:text-6xl">
+            <span className="text-white">
               Begin Your
             </span>
             <br />
-            <span className="text-gray-800">Secure Claim Review</span>
+            <span className="italic text-[var(--color-accent)]">Secure Claim Review</span>
           </h2>
         </motion.div>
 
         <div className="max-w-3xl mx-auto">
-          <Card className="border border-slate-200/80 shadow-2xl p-0 overflow-hidden bg-white/95 backdrop-blur-sm">
-            <CardHeader className="bg-gradient-to-r from-slate-100 to-cyan-50 text-center pb-8">
-              <CardTitle className="text-2xl mt-4 font-bold text-primary">
+          <Card className="overflow-hidden border border-white/10 bg-[#fbf7f0] p-0 text-primary shadow-2xl">
+            <CardHeader className="border-b border-[#e6ddcf] bg-[#f6efe2] pb-8 text-center">
+              <CardTitle className="mt-4 font-serif text-4xl text-primary">
                 Verify Eligibility In Minutes
               </CardTitle>
             </CardHeader>
@@ -292,11 +299,11 @@ const CaseEvaluation = () => {
                 <div className="space-y-6">
                   {/* Contact Information */}
                   <div>
-                    <h3 className="text-xl font-bold text-primary mb-6 text-center">Your Contact Information</h3>
+                    <h3 className="mb-6 text-center font-serif text-3xl text-primary">Your Contact Information</h3>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                       <div>
-                        <Label htmlFor="firstName" className="text-sm font-bold text-gray-700 flex items-center">
+                        <Label htmlFor="firstName" className="flex items-center text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">
                           <User className="w-4 h-4 mr-2 text-primary" />
                           First Name*
                         </Label>
@@ -306,14 +313,14 @@ const CaseEvaluation = () => {
                           placeholder="Enter your first name"
                           value={formData.firstName}
                           onChange={handleInputChange}
-                          className="mt-2 h-12 border-2 border-gray-200 focus:border-primary"
+                          className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
                           required
                           data-tf-element-role="first-name"
                         />
                       </div>
 
                       <div>
-                        <Label htmlFor="lastName" className="text-sm font-bold text-gray-700 flex items-center">
+                        <Label htmlFor="lastName" className="flex items-center text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">
                           <User className="w-4 h-4 mr-2 text-primary" />
                           Last Name*
                         </Label>
@@ -323,7 +330,7 @@ const CaseEvaluation = () => {
                           placeholder="Enter your last name"
                           value={formData.lastName}
                           onChange={handleInputChange}
-                          className="mt-2 h-12 border-2 border-gray-200 focus:border-primary"
+                          className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
                           required
                           data-tf-element-role="last-name"
                         />
@@ -332,7 +339,7 @@ const CaseEvaluation = () => {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       <div>
-                        <Label htmlFor="email" className="text-sm font-bold text-gray-700 flex items-center">
+                        <Label htmlFor="email" className="flex items-center text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">
                           <Mail className="w-4 h-4 mr-2 text-primary" />
                           Email Address*
                         </Label>
@@ -343,14 +350,14 @@ const CaseEvaluation = () => {
                           placeholder="Enter your email address"
                           value={formData.email}
                           onChange={handleInputChange}
-                          className="mt-2 h-12 border-2 border-gray-200 focus:border-primary"
+                          className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
                           required
                           data-tf-element-role="email"
                         />
                       </div>
 
                       <div>
-                        <Label htmlFor="phone" className="text-sm font-bold text-gray-700 flex items-center">
+                        <Label htmlFor="phone" className="flex items-center text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">
                           <Phone className="w-4 h-4 mr-2 text-primary" />
                           Phone Number*
                         </Label>
@@ -360,9 +367,69 @@ const CaseEvaluation = () => {
                           placeholder="Enter your phone number"
                           value={formData.phone}
                           onChange={handleInputChange}
-                          className="mt-2 h-12 border-2 border-gray-200 focus:border-primary"
+                          className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
                           required
                           data-tf-element-role="phone"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
+                      <div>
+                        <Label htmlFor="street" className="flex items-center text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">
+                          Street
+                        </Label>
+                        <Input
+                          id="street"
+                          name="street"
+                          placeholder="Street address"
+                          value={formData.street || ""}
+                          onChange={handleInputChange}
+                          className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                        />
+                      </div>
+
+                      <div>
+                        <Label htmlFor="city" className="flex items-center text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">
+                          City
+                        </Label>
+                        <Input
+                          id="city"
+                          name="city"
+                          placeholder="City"
+                          value={formData.city || ""}
+                          onChange={handleInputChange}
+                          className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
+                      <div>
+                        <Label htmlFor="state" className="flex items-center text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">
+                          State
+                        </Label>
+                        <Input
+                          id="state"
+                          name="state"
+                          placeholder="State"
+                          value={formData.state || ""}
+                          onChange={handleInputChange}
+                          className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                        />
+                      </div>
+
+                      <div>
+                        <Label htmlFor="zip" className="flex items-center text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">
+                          Zip
+                        </Label>
+                        <Input
+                          id="zip"
+                          name="zip"
+                          placeholder="Zip code"
+                          value={formData.zip || ""}
+                          onChange={handleInputChange}
+                          className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
                         />
                       </div>
                     </div>
@@ -370,18 +437,18 @@ const CaseEvaluation = () => {
 
                   {/* Case Details */}
                   <div>
-                    <h3 className="text-xl font-bold text-primary mb-6 text-center">Case Details</h3>
+                    <h3 className="mb-6 text-center font-serif text-3xl text-primary">Case Details</h3>
 
                     <div className="space-y-6">
                       <div>
-                        <Label htmlFor="caseType" className="text-sm font-bold text-gray-700 flex items-center">
+                        <Label htmlFor="caseType" className="flex items-center text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">
                           Case Type*
                         </Label>
                         <Select
                           onValueChange={(value) => handleSelectChange("caseType", value)}
                           value={formData.caseType}
                         >
-                          <SelectTrigger className="mt-2 h-12 border-2 border-gray-200 focus:border-primary">
+                          <SelectTrigger className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary">
                             <SelectValue placeholder="Select your case type" />
                           </SelectTrigger>
                           <SelectContent>
@@ -396,7 +463,7 @@ const CaseEvaluation = () => {
                       </div>
 
                       <div>
-                        <Label htmlFor="additionalInfo" className="text-sm font-bold text-gray-700">
+                        <Label htmlFor="additionalInfo" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">
                           Additional Information
                         </Label>
                         <Textarea
@@ -405,15 +472,15 @@ const CaseEvaluation = () => {
                           placeholder="Share anything else that may help us evaluate your case"
                           value={formData.additionalInfo}
                           onChange={handleInputChange}
-                          className="mt-2 border-2 border-gray-200 focus:border-primary"
+                          className="mt-2 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
                         />
                       </div>
                     </div>
                   </div>
 
                   {/* Required Agreements */}
-                  <div className="bg-cyan-50 border border-cyan-200 rounded-lg p-6 space-y-4">
-                    <h4 className="font-bold text-primary mb-4">Required Agreements</h4>
+                  <div className="space-y-4 border border-[#dfd3c4] bg-[#f8f1e6] p-6">
+                    <h4 className="mb-4 font-serif text-3xl text-primary">Required Agreements</h4>
 
                     <div className="flex items-start space-x-3">
                       <Checkbox
@@ -437,7 +504,7 @@ const CaseEvaluation = () => {
                       />
                       <label
                         htmlFor="agreeToAll"
-                        className="text-sm text-gray-800 cursor-pointer leading-relaxed space-y-2"
+                        className="cursor-pointer space-y-2 text-sm leading-relaxed text-primary/80"
                         data-tf-element-role="consent-language"
                       >
                         <span>
@@ -494,7 +561,7 @@ const CaseEvaluation = () => {
                     <Button
                       type="submit"
                       name="submit"
-                      className="bg-gradient-to-r from-accent to-amber-500 text-primary font-black px-8 py-6 text-lg w-full sm:w-auto"
+                      className="h-14 w-full rounded-none border border-[rgba(194,148,90,0.8)] bg-primary px-8 text-[12px] font-medium uppercase tracking-[0.28em] text-white hover:bg-[var(--color-accent)] hover:text-primary sm:w-auto"
                       disabled={isSubmitting}
                       data-tf-element-role="submit"
                     >

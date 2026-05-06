@@ -6,7 +6,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-display);
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -44,25 +45,25 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(0.99 0.005 210);
-  --foreground: oklch(0.26 0.03 235);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.26 0.03 235);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.26 0.03 235);
-  --primary: oklch(0.33 0.06 225);
-  --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.95 0.01 205);
-  --secondary-foreground: oklch(0.27 0.03 235);
-  --muted: oklch(0.96 0.006 215);
-  --muted-foreground: oklch(0.48 0.02 230);
-  --accent: oklch(0.73 0.13 55);
-  --accent-foreground: oklch(0.24 0.02 230);
+  --radius: 0;
+  --background: oklch(0.97 0.01 90);
+  --foreground: oklch(0.29 0.03 250);
+  --card: oklch(0.99 0.005 90);
+  --card-foreground: oklch(0.29 0.03 250);
+  --popover: oklch(0.99 0.005 90);
+  --popover-foreground: oklch(0.29 0.03 250);
+  --primary: oklch(0.29 0.04 252);
+  --primary-foreground: oklch(0.98 0.002 90);
+  --secondary: oklch(0.94 0.01 90);
+  --secondary-foreground: oklch(0.29 0.03 250);
+  --muted: oklch(0.95 0.01 90);
+  --muted-foreground: oklch(0.49 0.02 250);
+  --accent: oklch(0.72 0.1 63);
+  --accent-foreground: oklch(0.24 0.03 250);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.89 0.01 220);
-  --input: oklch(0.89 0.01 220);
-  --ring: oklch(0.58 0.05 210);
+  --border: oklch(0.89 0.01 88);
+  --input: oklch(0.89 0.01 88);
+  --ring: oklch(0.47 0.04 250);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -116,7 +117,46 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body), sans-serif;
+    background-image:
+      radial-gradient(circle at top, rgba(194, 148, 90, 0.08), transparent 35%),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.84), rgba(255, 252, 246, 1));
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display), serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  p {
+    letter-spacing: 0.01em;
+  }
+}
+
+@layer utilities {
+  .law-label {
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+  }
+
+  .law-frame {
+    position: relative;
+  }
+
+  .law-frame::before {
+    content: "";
+    position: absolute;
+    inset: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    pointer-events: none;
   }
 }

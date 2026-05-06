@@ -67,7 +67,7 @@ const CaseDescription = ({ caseData }: CaseDescriptionProps) => {
   };
 
   return (
-    <section className="py-16 sm:py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50/30 relative overflow-hidden">
+    <section className="relative overflow-hidden bg-[#fbf7f0] py-16 sm:py-20">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -98,13 +98,13 @@ const CaseDescription = ({ caseData }: CaseDescriptionProps) => {
         >
           {/* Header Section */}
           <motion.div variants={itemVariants} className="text-center mb-12 sm:mb-16">
-            <Badge className="mb-4 sm:mb-6 px-4 py-2 bg-primary/5 text-primary border-primary/30 font-bold text-sm sm:text-base">
+            <Badge className="mb-4 rounded-none border-[rgba(194,148,90,0.35)] bg-white px-4 py-2 text-sm sm:text-base font-medium uppercase tracking-[0.24em] text-primary">
               <BookOpen className="w-4 h-4 mr-2" />
               CASE OVERVIEW
             </Badge>
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-4 sm:mb-6 leading-tight">
-              <span className="bg-gradient-to-r from-primary via-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            <h2 className="mb-4 font-serif text-3xl leading-tight text-primary sm:text-4xl md:text-5xl sm:mb-6">
+              <span className="text-primary">
                 Understanding Your
               </span>
               <br />
@@ -135,7 +135,7 @@ const CaseDescription = ({ caseData }: CaseDescriptionProps) => {
                     <div className="bg-primary/10 rounded-full p-3 mr-4">
                       <FileText className="w-6 h-6 text-primary" />
                     </div>
-                    <h3 className="text-2xl font-black text-primary">Case Overview</h3>
+                    <h3 className="font-serif text-2xl text-primary">Case Overview</h3>
                   </div>
 
                   <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
@@ -144,7 +144,7 @@ const CaseDescription = ({ caseData }: CaseDescriptionProps) => {
                     </p>
 
                     {/* Key Points */}
-                    <div className="bg-gradient-to-r from-primary/5 to-blue-500/5 rounded-xl p-6 mb-6">
+                    <div className="mb-6 border border-[#dfd3c4] bg-[#f8f1e6] p-6">
                       <h4 className="font-bold text-primary mb-4 flex items-center text-lg">
                         <Target className="w-5 h-5 mr-2" />
                         Key Points to Know
@@ -170,7 +170,7 @@ const CaseDescription = ({ caseData }: CaseDescriptionProps) => {
                     </div>
 
                     {/* Legal Process Overview */}
-                    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6">
+                    <div className="border border-[#dfd3c4] bg-white p-6">
                       <h4 className="font-bold text-primary mb-4 flex items-center text-lg">
                         <Gavel className="w-5 h-5 mr-2" />
                         How We Handle Your Case
@@ -224,7 +224,7 @@ const CaseDescription = ({ caseData }: CaseDescriptionProps) => {
             {/* Sidebar */}
             <motion.div variants={itemVariants} className="lg:col-span-1 space-y-6">
               {/* Key Facts Card */}
-              <Card className="border-none shadow-xl bg-gradient-to-br from-primary to-blue-600 text-white overflow-hidden relative">
+              <Card className="relative overflow-hidden border-none bg-primary text-white shadow-xl">
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12" />
                 <CardContent className="p-6 relative z-10">
                   <div className="flex items-center mb-6">
@@ -246,7 +246,7 @@ const CaseDescription = ({ caseData }: CaseDescriptionProps) => {
               </Card>
 
               {/* Action Card */}
-              <Card className="border-2 border-accent/20 bg-gradient-to-br from-accent/5 to-yellow-400/5 shadow-xl">
+              <Card className="border border-[#dfd3c4] bg-[#f8f1e6] shadow-xl">
                 <CardContent className="p-6 text-center">
                   <div className="bg-accent/20 rounded-full p-4 inline-flex items-center justify-center mb-4">
                     <Shield className="w-6 h-6 text-accent" />
@@ -277,7 +277,7 @@ const CaseDescription = ({ caseData }: CaseDescriptionProps) => {
               </Card>
 
               {/* Urgency Card */}
-              <Card className="border-2 border-red-200 bg-gradient-to-br from-red-50 to-orange-50 shadow-xl">
+              <Card className="border border-[#dfd3c4] bg-white shadow-xl">
                 <CardContent className="p-6">
                   <div className="flex items-center space-x-3 mb-4">
                     <Clock className="w-5 h-5 text-red-500" />

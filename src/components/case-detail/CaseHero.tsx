@@ -63,7 +63,7 @@ const CaseHero = ({ caseData }: CaseHeroProps) => {
           priority
           className="object-cover scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-blue-900/90 to-indigo-900/85" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(23,34,52,0.95)_0%,rgba(23,34,52,0.9)_42%,rgba(23,34,52,0.72)_68%,rgba(23,34,52,0.52)_100%)]" />
 
         {/* Animated Overlay Pattern */}
         <motion.div
@@ -156,13 +156,13 @@ const CaseHero = ({ caseData }: CaseHeroProps) => {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="flex flex-wrap gap-2 sm:gap-3 mb-6"
               >
-                <Badge className="bg-green-500/20 text-green-300 border-green-500/30 px-3 py-1 text-xs sm:text-sm font-bold backdrop-blur-sm">
+                <Badge className="border border-white/20 bg-white/10 px-3 py-1 text-xs sm:text-sm font-bold text-white backdrop-blur-sm">
                   <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5" />
                   ACTIVE LITIGATION
                 </Badge>
 
                 {caseData.featured && (
-                  <Badge className="bg-red-500/20 text-red-300 border-red-500/30 px-3 py-1 text-xs sm:text-sm font-bold backdrop-blur-sm animate-pulse">
+                  <Badge className="border border-[rgba(194,148,90,0.4)] bg-[rgba(194,148,90,0.14)] px-3 py-1 text-xs sm:text-sm font-bold text-[var(--color-accent)] backdrop-blur-sm animate-pulse">
                     <Zap className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5" />
                     URGENT DEADLINES
                   </Badge>
@@ -240,12 +240,12 @@ const CaseHero = ({ caseData }: CaseHeroProps) => {
                       asChild
                       variant="outline"
                       size="lg"
-                      className="w-full border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 px-6 sm:px-8 py-4 sm:py-6 font-bold text-base sm:text-lg backdrop-blur-sm transition-all duration-300"
+                      className="w-full border-2 border-white/30 px-6 sm:px-8 py-4 sm:py-6 font-bold text-base sm:text-lg text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/50"
                     >
-                      <a href="tel:+15550102020" className="flex text-black items-center justify-center">
-                        <Phone size={20} className="mr-2 sm:mr-3 text-black" />
-                        <span className=" text-black sm:inline">Call +1 555-010-2020</span>
-                        <span className="sm:hidden ">Call Now</span>
+                      <a href="tel:+15550102020" className="flex items-center justify-center">
+                        <Phone size={20} className="mr-2 sm:mr-3" />
+                        <span className="sm:inline">Call +1 555-010-2020</span>
+                        <span className="sm:hidden">Call Now</span>
                       </a>
                     </Button>
                   </motion.div>

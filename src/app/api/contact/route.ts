@@ -6,6 +6,38 @@ export const runtime = "nodejs";
 
 const TF_USERNAME = "API";
 const TF_API_KEY = process.env.TRUSTEDFORM_API_KEY || "";
+const APEX_DEPO_SUBMIT_URL =
+  process.env.APEX_DEPO_SUBMIT_URL ||
+  "https://apex-services-nbd7z6aa7a-uc.a.run.app/intake/depo/depo/zapier/aldrin/submit";
+const APEX_WEBSOURCE = process.env.APEX_WEBSOURCE || "https://skyeclaimconnect.com";
+const APEX_META_USER_NAME = process.env.APEX_META_USER_NAME || "Skye Claim Connect";
+const APEX_META_USER_EMAIL = process.env.APEX_META_USER_EMAIL || "support@skyeclaimconnect.com";
+const APEX_META_CAMPAIGN = process.env.APEX_META_CAMPAIGN || "";
+const APEX_META_SELLER = process.env.APEX_META_SELLER || "";
+
+async function submitDepoLeadToApex(payload: Record<string, unknown>) {
+  const res = await fetch(APEX_DEPO_SUBMIT_URL, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  const text = await res.text();
+  let json: any = null;
+  try {
+    json = JSON.parse(text);
+  } catch {}
+
+  return {
+    ok: res.ok && (json?.status === "Success" || json?.status === "success" || res.status < 300),
+    status: res.status,
+    json,
+    raw: text,
+  };
+}
 
 function getClientIp(req: NextRequest) {
   const xfwd = req.headers.get("x-forwarded-for");
@@ -75,6 +107,7 @@ export async function POST(req: NextRequest) {
     await submission.save();
 
     let claimSummary: { ok: boolean; status?: number } | null = null;
+    let apexSummary: { ok: boolean; status?: number; response?: unknown } | null = null;
 
     if (tfUrl && TF_API_KEY) {
       try {
@@ -101,6 +134,57 @@ export async function POST(req: NextRequest) {
       }
     }
 
+    if (body.caseType === "depo-provera") {
+      try {
+        const apexPayload = {
+          firstName: body.firstName,
+          lastName: body.lastName,
+          email: body.email,
+          phone: body.phone,
+          street: body.street || "",
+          city: body.city || "",
+          state: body.state || "",
+          zip: body.zip || "",
+          notes: body.additionalInfo || "",
+          meta: {
+            id: submission._id.toString(),
+            timestamp: new Date().toISOString(),
+            createDt: submission.createdAt?.toISOString?.() || new Date().toISOString(),
+            updateDt: new Date().toISOString(),
+            user: {
+              name: APEX_META_USER_NAME,
+              email: APEX_META_USER_EMAIL,
+            },
+            campaign: APEX_META_CAMPAIGN || undefined,
+            seller: APEX_META_SELLER || undefined,
+            claimant: `${body.firstName || ""} ${body.lastName || ""}`.trim(),
+            websource: referer || APEX_WEBSOURCE,
+          },
+        };
+
+        const apexResponse = await submitDepoLeadToApex(apexPayload);
+        apexSummary = {
+          ok: apexResponse.ok,
+          status: apexResponse.status,
+          response: apexResponse.json ?? apexResponse.raw,
+        };
+
+        submission.set({
+          apexSubmitted: apexResponse.ok,
+          apexSubmitStatus: apexResponse.status,
+          apexSubmitResponse: apexResponse.json ?? apexResponse.raw,
+        });
+        await submission.save();
+      } catch (e) {
+        console.error("APEX submit error:", e);
+        submission.set({
+          apexSubmitted: false,
+          apexSubmitError: String(e),
+        });
+        await submission.save();
+      }
+    }
+
     return NextResponse.json(
       {
         message: "Contact form submitted successfully",
@@ -109,6 +193,10 @@ export async function POST(req: NextRequest) {
           providedUrl: Boolean(tfUrl),
           claimed: claimSummary?.ok ?? false,
           status: claimSummary?.status ?? null,
+        },
+        apex: {
+          submitted: apexSummary?.ok ?? false,
+          status: apexSummary?.status ?? null,
         },
         id: submission._id,
       },

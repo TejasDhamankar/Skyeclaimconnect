@@ -3,6 +3,10 @@ export interface CaseEvaluationFormData {
   lastName: string;
   email: string;
   phone: string;
+  street?: string;
+  city?: string;
+  state?: string;
+  zip?: string;
   caseType: string;
   exposurePeriod: string;
   medicalCondition: string;

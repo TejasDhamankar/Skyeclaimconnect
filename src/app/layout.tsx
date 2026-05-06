@@ -1,10 +1,20 @@
 import "@/app/globals.css";
-import { Inter } from "next/font/google";
+import { Cormorant_Garamond, Jost } from "next/font/google";
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import Footer from "@/components/sections/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const bodyFont = Jost({
+  subsets: ["latin"],
+  variable: "--font-body",
+  weight: ["400", "500", "600", "700"],
+});
+
+const displayFont = Cormorant_Garamond({
+  subsets: ["latin"],
+  variable: "--font-display",
+  weight: ["400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Skye Claim Connect | Trusted Claims & Legal Intake",
@@ -19,7 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`${bodyFont.variable} ${displayFont.variable}`}>
 
         <ThemeProvider
           attribute="class"

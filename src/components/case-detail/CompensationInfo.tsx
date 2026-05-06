@@ -81,10 +81,10 @@ const CompensationInfo = ({ caseData }: CompensationInfoProps) => {
 
   const getColorClasses = (color: string) => {
     switch (color) {
-      case 'blue': return 'from-blue-500/10 to-blue-600/10 border-blue-200 hover:border-blue-300 text-blue-700';
-      case 'purple': return 'from-purple-500/10 to-purple-600/10 border-purple-200 hover:border-purple-300 text-purple-700';
-      case 'red': return 'from-red-500/10 to-red-600/10 border-red-200 hover:border-red-300 text-red-700';
-      default: return 'from-gray-500/10 to-gray-600/10 border-gray-200 hover:border-gray-300 text-gray-700';
+      case 'blue': return 'from-[rgba(23,34,52,0.05)] to-[rgba(23,34,52,0.08)] border-[#d9cfbf] hover:border-[#cab89b] text-primary';
+      case 'purple': return 'from-[rgba(194,148,90,0.08)] to-[rgba(194,148,90,0.12)] border-[#d9cfbf] hover:border-[#cab89b] text-primary';
+      case 'red': return 'from-[rgba(23,34,52,0.05)] to-[rgba(194,148,90,0.1)] border-[#d9cfbf] hover:border-[#cab89b] text-primary';
+      default: return 'from-[rgba(23,34,52,0.05)] to-[rgba(23,34,52,0.08)] border-[#d9cfbf] hover:border-[#cab89b] text-primary';
     }
   };
 
@@ -98,11 +98,11 @@ const CompensationInfo = ({ caseData }: CompensationInfoProps) => {
   };
 
   return (
-    <section className="py-16 sm:py-20 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 relative overflow-hidden">
+    <section className="relative overflow-hidden bg-[#fbf7f0] py-16 sm:py-20">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute -top-20 -right-20 w-48 h-48 sm:w-96 sm:h-96 bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-full blur-2xl sm:blur-3xl"
+          className="absolute -top-20 -right-20 h-48 w-48 rounded-full bg-[rgba(194,148,90,0.08)] blur-2xl sm:h-96 sm:w-96 sm:blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             rotate: [0, 180, 360],
@@ -145,13 +145,13 @@ const CompensationInfo = ({ caseData }: CompensationInfoProps) => {
         >
           {/* Header Section */}
           <motion.div variants={itemVariants} className="text-center mb-12 sm:mb-16">
-            <Badge className="mb-4 sm:mb-6 px-4 py-2 bg-green-500/10 text-green-700 border-green-500/30 font-bold text-sm sm:text-base">
+            <Badge className="mb-4 rounded-none border-[rgba(194,148,90,0.35)] bg-white px-4 py-2 text-sm sm:text-base font-medium uppercase tracking-[0.24em] text-primary">
               <Banknote className="w-4 h-4 mr-2" />
               COMPENSATION DETAILS
             </Badge>
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-4 sm:mb-6 leading-tight">
-              <span className="bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 bg-clip-text text-transparent">
+            <h2 className="mb-4 font-serif text-3xl leading-tight text-primary sm:text-4xl md:text-5xl sm:mb-6">
+              <span className="text-primary">
                 What's Your Case
               </span>
               <br />
@@ -159,7 +159,7 @@ const CompensationInfo = ({ caseData }: CompensationInfoProps) => {
             </h2>
 
             <motion.div
-              className="w-16 sm:w-24 h-1 bg-gradient-to-r from-green-500 to-emerald-400 mx-auto mb-4 sm:mb-6 rounded-full"
+              className="mx-auto mb-4 h-1 w-16 rounded-full bg-[var(--color-accent)] sm:mb-6 sm:w-24"
               initial={{ width: 0 }}
               whileInView={{ width: 96 }}
               viewport={{ once: true }}
@@ -168,7 +168,7 @@ const CompensationInfo = ({ caseData }: CompensationInfoProps) => {
 
             <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               {caseData.compensationInfo}
-              <span className="font-bold text-green-600"> Our experienced team fights to maximize your compensation.</span>
+              <span className="font-bold text-[var(--color-accent)]"> Our experienced team fights to maximize your compensation.</span>
             </p>
           </motion.div>
 
@@ -321,7 +321,7 @@ const CompensationInfo = ({ caseData }: CompensationInfoProps) => {
             {/* Sidebar */}
             <motion.div variants={itemVariants} className="lg:col-span-1 space-y-6">
               {/* Calculator Card */}
-              <Card className="border-none shadow-xl bg-gradient-to-br from-accent to-yellow-400 text-primary overflow-hidden relative">
+              <Card className="relative overflow-hidden border-none bg-primary text-white shadow-xl">
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12" />
                 <CardContent className="p-6 sm:p-8 text-center relative z-10">
                   <div className="bg-primary/20 rounded-full p-4 inline-flex items-center justify-center mb-4">
@@ -354,7 +354,7 @@ const CompensationInfo = ({ caseData }: CompensationInfoProps) => {
               </Card>
 
               {/* No Fee Guarantee */}
-              <Card className="border-2 border-green-200 bg-gradient-to-br from-green-50 to-emerald-50 shadow-xl">
+              <Card className="border border-[#dfd3c4] bg-white shadow-xl">
                 <CardContent className="p-6">
                   <div className="text-center">
                     <div className="bg-green-500/20 rounded-full p-4 inline-flex items-center justify-center mb-4">
@@ -386,7 +386,7 @@ const CompensationInfo = ({ caseData }: CompensationInfoProps) => {
               </Card>
 
               {/* Urgency Card */}
-              <Card className="border-2 border-red-200 bg-gradient-to-br from-red-50 to-orange-50 shadow-xl">
+              <Card className="border border-[#dfd3c4] bg-white shadow-xl">
                 <CardContent className="p-6">
                   <div className="flex items-center space-x-3 mb-4">
                     <Clock className="w-5 h-5 text-red-500" />
@@ -423,7 +423,7 @@ const CompensationInfo = ({ caseData }: CompensationInfoProps) => {
 
           {/* Bottom CTA */}
           <motion.div variants={itemVariants} className="mt-16">
-            <Card className="border-none shadow-2xl bg-gradient-to-br from-primary to-blue-600 text-white overflow-hidden relative">
+            <Card className="relative overflow-hidden border-none bg-primary text-white shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12" />
               <CardContent className="p-8 sm:p-12 text-center relative z-10">
                 <div className="bg-accent/20 rounded-full p-4 inline-flex items-center justify-center mb-6">

@@ -76,11 +76,11 @@ const EligibilityCriteria = ({ caseData }: EligibilityCriteriaProps) => {
   };
 
   return (
-    <section className="py-16 sm:py-20 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 relative overflow-hidden">
+    <section className="relative overflow-hidden bg-[#fbf7f0] py-16 sm:py-20">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute -top-20 -left-20 w-48 h-48 sm:w-96 sm:h-96 bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-full blur-2xl sm:blur-3xl"
+          className="absolute -top-20 -left-20 h-48 w-48 rounded-full bg-[rgba(194,148,90,0.08)] blur-2xl sm:h-96 sm:w-96 sm:blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             rotate: [0, 180, 360],
@@ -123,13 +123,13 @@ const EligibilityCriteria = ({ caseData }: EligibilityCriteriaProps) => {
         >
           {/* Header Section */}
           <motion.div variants={itemVariants} className="text-center mb-12 sm:mb-16">
-            <Badge className="mb-4 sm:mb-6 px-4 py-2 bg-green-500/10 text-green-700 border-green-500/30 font-bold text-sm sm:text-base">
+            <Badge className="mb-4 rounded-none border-[rgba(194,148,90,0.35)] bg-white px-4 py-2 text-sm sm:text-base font-medium uppercase tracking-[0.24em] text-primary">
               <Target className="w-4 h-4 mr-2" />
               ELIGIBILITY REQUIREMENTS
             </Badge>
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-4 sm:mb-6 leading-tight">
-              <span className="bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 bg-clip-text text-transparent">
+            <h2 className="mb-4 font-serif text-3xl leading-tight text-primary sm:text-4xl md:text-5xl sm:mb-6">
+              <span className="text-primary">
                 Do You Qualify
               </span>
               <br />
@@ -137,7 +137,7 @@ const EligibilityCriteria = ({ caseData }: EligibilityCriteriaProps) => {
             </h2>
 
             <motion.div
-              className="w-16 sm:w-24 h-1 bg-gradient-to-r from-green-500 to-emerald-400 mx-auto mb-4 sm:mb-6 rounded-full"
+              className="mx-auto mb-4 h-1 w-16 rounded-full bg-[var(--color-accent)] sm:mb-6 sm:w-24"
               initial={{ width: 0 }}
               whileInView={{ width: 96 }}
               viewport={{ once: true }}
@@ -146,12 +146,12 @@ const EligibilityCriteria = ({ caseData }: EligibilityCriteriaProps) => {
 
             <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               You may qualify for a {caseData.title} claim if you meet the following criteria.
-              <span className="font-bold text-green-600"> Most of our clients qualify for significant compensation.</span>
+              <span className="font-bold text-[var(--color-accent)]"> Most of our clients qualify for significant compensation.</span>
             </p>
 
             {/* Qualification Rate */}
             <div className="mt-8">
-              <Card className="inline-block bg-gradient-to-r from-green-500/10 to-emerald-500/10 border-green-200">
+              <Card className="inline-block border border-[#dfd3c4] bg-white">
                 <CardContent className="px-6 py-4">
                   <div className="flex items-center space-x-3">
                     <div className="bg-green-500/20 rounded-full p-2">
@@ -198,7 +198,7 @@ const EligibilityCriteria = ({ caseData }: EligibilityCriteriaProps) => {
                         whileHover={{ x: 5 }}
                         transition={{ duration: 0.2 }}
                       >
-                        <Card className="border border-green-200 bg-gradient-to-r from-green-50/50 to-emerald-50/50 hover:from-green-100/50 hover:to-emerald-100/50 transition-all duration-300 group-hover:shadow-md">
+                        <Card className="border border-[#dfd3c4] bg-white transition-all duration-300 group-hover:shadow-md hover:bg-[#f8f1e6]">
                           <CardContent className="p-4 sm:p-6">
                             <div className="flex items-start space-x-4">
                               <div className="bg-green-500/20 rounded-full p-2 flex-shrink-0 group-hover:bg-green-500/30 transition-colors">
@@ -272,7 +272,7 @@ const EligibilityCriteria = ({ caseData }: EligibilityCriteriaProps) => {
             {/* Sidebar */}
             <motion.div variants={itemVariants} className="lg:col-span-1 space-y-6">
               {/* Quick Check Card */}
-              <Card className="border-none shadow-xl bg-gradient-to-br from-accent to-yellow-400 text-primary overflow-hidden relative">
+              <Card className="relative overflow-hidden border-none bg-primary text-white shadow-xl">
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12" />
                 <CardContent className="p-6 sm:p-8 text-center relative z-10">
                   <div className="bg-primary/20 rounded-full p-4 inline-flex items-center justify-center mb-4">
@@ -308,7 +308,7 @@ const EligibilityCriteria = ({ caseData }: EligibilityCriteriaProps) => {
 
 
               {/* Contact Card */}
-              <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-blue-500/5 shadow-lg">
+              <Card className="border border-[#dfd3c4] bg-white shadow-lg">
                 <CardContent className="p-6 text-center">
                   <div className="bg-primary/10 rounded-full p-3 inline-flex items-center justify-center mb-4">
                     <Phone className="w-5 h-5 text-primary" />
@@ -339,7 +339,7 @@ const EligibilityCriteria = ({ caseData }: EligibilityCriteriaProps) => {
               </Card>
 
               {/* Urgency Card */}
-              <Card className="border-2 border-red-200 bg-gradient-to-br from-red-50 to-orange-50 shadow-lg">
+              <Card className="border border-[#dfd3c4] bg-white shadow-lg">
                 <CardContent className="p-6">
                   <div className="flex items-center space-x-3 mb-4">
                     <Clock className="w-5 h-5 text-red-500" />
@@ -358,7 +358,7 @@ const EligibilityCriteria = ({ caseData }: EligibilityCriteriaProps) => {
 
           {/* Bottom CTA */}
           <motion.div variants={itemVariants} className="mt-16">
-            <Card className="border-none shadow-2xl bg-gradient-to-br from-primary to-blue-600 text-white overflow-hidden relative">
+            <Card className="relative overflow-hidden border-none bg-primary text-white shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12" />
               <CardContent className="p-8 sm:p-12 text-center relative z-10">
                 <h3 className="text-2xl sm:text-3xl font-black mb-4">

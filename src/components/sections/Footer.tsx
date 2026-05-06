@@ -221,7 +221,7 @@ const Footer = () => {
             <motion.div className="lg:col-span-4" variants={itemVariants}>
               <div className="flex items-center mb-6">
                 <img
-                  src="/logo.png"
+                  src="/logo_.png"
                   alt="Skye Claim Connect Logo"
                   className="w-auto h-20 sm:h-24"
                 />

@@ -98,9 +98,9 @@ const CaseFAQ = ({ caseData }: CaseFAQProps) => {
 
   const getCategoryColor = (category: string) => {
     switch (category) {
-      case 'general': return 'text-blue-600 bg-blue-500/10';
-      case 'legal': return 'text-purple-600 bg-purple-500/10';
-      case 'process': return 'text-green-600 bg-green-500/10';
+      case 'general': return 'text-primary bg-[rgba(23,34,52,0.08)]';
+      case 'legal': return 'text-primary bg-[rgba(194,148,90,0.16)]';
+      case 'process': return 'text-primary bg-[rgba(23,34,52,0.12)]';
       default: return 'text-primary bg-primary/10';
     }
   };
@@ -115,7 +115,7 @@ const CaseFAQ = ({ caseData }: CaseFAQProps) => {
   };
 
   return (
-    <section className="py-16 sm:py-20 bg-gradient-to-br from-gray-50 via-white to-purple-50/30 relative overflow-hidden">
+    <section className="relative overflow-hidden bg-[#fbf7f0] py-16 sm:py-20">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -175,8 +175,8 @@ const CaseFAQ = ({ caseData }: CaseFAQProps) => {
               FREQUENTLY ASKED QUESTIONS
             </Badge>
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-4 sm:mb-6 leading-tight">
-              <span className="bg-gradient-to-r from-primary via-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            <h2 className="mb-4 font-serif text-3xl leading-tight text-primary sm:text-4xl md:text-5xl sm:mb-6">
+              <span className="text-primary">
                 Get Answers About
               </span>
               <br />
@@ -216,7 +216,7 @@ const CaseFAQ = ({ caseData }: CaseFAQProps) => {
                       className="group"
                       whileHover={{ y: -5 }}
                     >
-                      <Card className="h-full border-none shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-blue-50/50 group-hover:from-white group-hover:to-primary/5">
+                      <Card className="h-full border border-[#dfd3c4] bg-white shadow-lg transition-all duration-300 hover:shadow-xl group-hover:bg-[#f8f1e6]">
                         <CardContent className="p-4 sm:p-6">
                           <div className="flex items-start space-x-3 mb-3">
                             <div className="bg-primary/10 rounded-full p-2 flex-shrink-0 group-hover:bg-primary/20 transition-colors">
@@ -226,7 +226,7 @@ const CaseFAQ = ({ caseData }: CaseFAQProps) => {
                               {faq.category.replace('-', ' ').toUpperCase()}
                             </Badge>
                           </div>
-                          <h4 className="font-bold text-primary text-sm sm:text-base mb-3 leading-tight group-hover:text-blue-600 transition-colors">
+                          <h4 className="mb-3 text-sm sm:text-base font-bold leading-tight text-primary transition-colors group-hover:text-[var(--color-accent)]">
                             {faq.question}
                           </h4>
                           <p className="text-gray-600 text-xs sm:text-sm leading-relaxed line-clamp-3">
@@ -296,7 +296,7 @@ const CaseFAQ = ({ caseData }: CaseFAQProps) => {
             {/* Enhanced Sidebar */}
             <motion.div variants={itemVariants} className="lg:col-span-1 space-y-6">
               {/* Contact Card */}
-              <Card className="border-none shadow-xl bg-gradient-to-br from-primary to-blue-600 text-white overflow-hidden relative">
+              <Card className="relative overflow-hidden border-none bg-primary text-white shadow-xl">
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12" />
                 <CardContent className="p-6 sm:p-8 relative z-10">
                   <div className="flex items-center space-x-3 mb-6">
@@ -376,7 +376,7 @@ const CaseFAQ = ({ caseData }: CaseFAQProps) => {
               </Card>
 
               {/* Urgency Card */}
-              <Card className="border-2 border-red-200 bg-gradient-to-br from-red-50 to-orange-50 shadow-lg">
+              <Card className="border border-[#dfd3c4] bg-white shadow-lg">
                 <CardContent className="p-6">
                   <div className="flex items-center space-x-3 mb-4">
                     <AlertCircle className="w-5 h-5 text-red-500" />

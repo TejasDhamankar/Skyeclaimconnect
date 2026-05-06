@@ -79,7 +79,7 @@ export default async function CaseDetailPage({
 
 
       {/* Trust Banner */}
-      <section className="bg-gradient-to-r from-primary/5 to-blue-500/5 py-8 sm:py-12">
+      <section className="bg-[#f8f1e6] py-8 sm:py-12">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8">
             <h2 className="text-2xl sm:text-3xl font-black text-primary mb-4">
@@ -101,45 +101,45 @@ export default async function CaseDetailPage({
       <CompensationInfo caseData={caseData} />
 
       {/* Urgency Section */}
-      <section className="py-12 sm:py-16 bg-gradient-to-br from-red-50 to-orange-50 relative overflow-hidden">
+      <section className="relative overflow-hidden bg-[#fbf7f0] py-12 sm:py-16">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-20 -right-20 w-48 h-48 bg-gradient-to-br from-red-500/10 to-orange-500/10 rounded-full blur-2xl" />
+          <div className="absolute -top-20 -right-20 h-48 w-48 rounded-full bg-[rgba(194,148,90,0.08)] blur-2xl" />
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <Card className="border-2 border-red-200 bg-white/80 backdrop-blur-sm shadow-xl max-w-4xl mx-auto">
+          <Card className="mx-auto max-w-4xl border border-[#dfd3c4] bg-white/90 backdrop-blur-sm shadow-xl">
             <CardContent className="p-6 sm:p-8 text-center">
               <div className="flex items-center justify-center mb-4">
-                <div className="bg-red-500/20 rounded-full p-3 mr-4">
-                  <AlertCircle className="w-6 h-6 text-red-600" />
-                </div>
-                <h3 className="text-2xl sm:text-3xl font-black text-red-700">
+                  <div className="mr-4 rounded-full bg-[rgba(194,148,90,0.16)] p-3">
+                    <AlertCircle className="w-6 h-6 text-[var(--color-accent)]" />
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-black text-primary">
                   Time is Running Out!
                 </h3>
               </div>
 
               <p className="text-lg text-gray-700 mb-6 leading-relaxed">
                 {caseData.title} cases have strict filing deadlines. Don't wait until it's too late to seek the compensation you deserve.
-                <span className="font-bold text-red-600"> Act now to protect your rights.</span>
+                <span className="font-bold text-[var(--color-accent)]"> Act now to protect your rights.</span>
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-                <div className="bg-red-100 rounded-lg p-4">
-                  <div className="font-black text-lg text-red-700">Statute of Limitations</div>
-                  <div className="text-sm text-red-600">Filing deadlines apply</div>
+                <div className="bg-[#f8f1e6] p-4">
+                  <div className="text-lg font-black text-primary">Statute of Limitations</div>
+                  <div className="text-sm text-primary/70">Filing deadlines apply</div>
                 </div>
-                <div className="bg-orange-100 rounded-lg p-4">
-                  <div className="font-black text-lg text-orange-700">Evidence Preservation</div>
-                  <div className="text-sm text-orange-600">Documents may be lost</div>
+                <div className="bg-[#f8f1e6] p-4">
+                  <div className="text-lg font-black text-primary">Evidence Preservation</div>
+                  <div className="text-sm text-primary/70">Documents may be lost</div>
                 </div>
-                <div className="bg-yellow-100 rounded-lg p-4">
-                  <div className="font-black text-lg text-yellow-700">Maximum Compensation</div>
-                  <div className="text-sm text-yellow-600">Early filing advantages</div>
+                <div className="bg-[#f8f1e6] p-4">
+                  <div className="text-lg font-black text-primary">Maximum Compensation</div>
+                  <div className="text-sm text-primary/70">Early filing advantages</div>
                 </div>
               </div>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button asChild size="lg" className="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white font-black px-8 py-6 text-lg shadow-xl hover:shadow-2xl w-full sm:w-auto">
+                <Button asChild size="lg" className="w-full sm:w-auto bg-primary px-8 py-6 text-lg font-black text-white shadow-xl hover:bg-primary/90 hover:shadow-2xl">
                   <Link href="#case-evaluation">
                     <Zap className="mr-3 h-5 w-5" />
                     Get Urgent Case Review
@@ -147,7 +147,7 @@ export default async function CaseDetailPage({
                   </Link>
                 </Button>
 
-                <Button asChild variant="outline" size="lg" className="border-2 border-red-300 text-red-700 hover:bg-red-50 font-bold px-8 py-6 text-lg w-full sm:w-auto">
+                <Button asChild variant="outline" size="lg" className="w-full sm:w-auto border-2 border-[rgba(194,148,90,0.45)] px-8 py-6 text-lg font-bold text-primary hover:bg-[#f8f1e6]">
                   <a href="tel:+15550102020">
                     <Phone className="mr-3 h-5 w-5" />
                     Call Emergency Line
@@ -166,7 +166,7 @@ export default async function CaseDetailPage({
       <CaseFAQ caseData={caseData} />
 
       {/* Enhanced Case Evaluation Section */}
-      <div id="case-evaluation" className="bg-gradient-to-br from-gray-50 via-white to-blue-50/30">
+      <div id="case-evaluation" className="bg-[#fbf7f0]">
         <div className="container mx-auto px-4 py-8">
           <div className="text-center mb-8">
             <Badge className="mb-4 px-4 py-2 bg-accent/20 text-accent border-accent/30 font-bold">
@@ -185,7 +185,7 @@ export default async function CaseDetailPage({
       </div>
 
       {/* Related Cases Section */}
-      <section className="py-12 sm:py-16 bg-white">
+      <section className="bg-[#fbf7f0] py-12 sm:py-16">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <Badge className="mb-4 px-4 py-2 bg-primary/5 text-primary border-primary/30 font-bold">
@@ -207,7 +207,7 @@ export default async function CaseDetailPage({
                   <TrendingUp className="w-5 h-5 text-green-500 mr-2" />
                   <Badge className="bg-green-500/10 text-green-700 text-xs">Active</Badge>
                 </div>
-                <h3 className="text-lg font-bold text-primary mb-2 group-hover:text-blue-600 transition-colors">
+                <h3 className="mb-2 text-lg font-bold text-primary transition-colors group-hover:text-[var(--color-accent)]">
                   Camp Lejeune Water Contamination
                 </h3>
                 <p className="text-gray-600 text-sm mb-4">
@@ -228,7 +228,7 @@ export default async function CaseDetailPage({
                   <TrendingUp className="w-5 h-5 text-green-500 mr-2" />
                   <Badge className="bg-green-500/10 text-green-700 text-xs">Active</Badge>
                 </div>
-                <h3 className="text-lg font-bold text-primary mb-2 group-hover:text-blue-600 transition-colors">
+                <h3 className="mb-2 text-lg font-bold text-primary transition-colors group-hover:text-[var(--color-accent)]">
                   3M Combat Arms Earplugs
                 </h3>
                 <p className="text-gray-600 text-sm mb-4">
@@ -249,7 +249,7 @@ export default async function CaseDetailPage({
                   <TrendingUp className="w-5 h-5 text-green-500 mr-2" />
                   <Badge className="bg-green-500/10 text-green-700 text-xs">Active</Badge>
                 </div>
-                <h3 className="text-lg font-bold text-primary mb-2 group-hover:text-blue-600 transition-colors">
+                <h3 className="mb-2 text-lg font-bold text-primary transition-colors group-hover:text-[var(--color-accent)]">
                   Roundup Weed Killer
                 </h3>
                 <p className="text-gray-600 text-sm mb-4">

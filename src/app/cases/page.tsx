@@ -26,7 +26,7 @@ export default function CasesPage() {
       <Header />
 
       {/* Enhanced Hero Section */}
-      <section className="relative pt-24 sm:pt-32 pb-16 sm:pb-20 bg-gradient-to-br from-primary via-blue-600 to-indigo-700 overflow-hidden">
+      <section className="relative overflow-hidden bg-primary pb-16 pt-24 sm:pb-20 sm:pt-32">
         {/* Background Pattern */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12" />
@@ -94,10 +94,10 @@ export default function CasesPage() {
 
       {/* Hot Cases Section */}
       {hotCases.length > 0 && (
-        <section id="hot-cases" className="py-16 sm:py-20 bg-gradient-to-br from-red-50 to-orange-50 relative overflow-hidden">
+        <section id="hot-cases" className="relative overflow-hidden bg-[#fbf7f0] py-16 sm:py-20">
           {/* Background Elements */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute -top-20 -right-20 w-48 h-48 sm:w-96 sm:h-96 bg-gradient-to-br from-red-500/10 to-orange-500/10 rounded-full blur-2xl sm:blur-3xl" />
+            <div className="absolute -top-20 -right-20 h-48 w-48 rounded-full bg-[rgba(194,148,90,0.08)] blur-2xl sm:h-96 sm:w-96 sm:blur-3xl" />
           </div>
 
           <div className="container mx-auto px-4 relative z-10">
@@ -153,7 +153,7 @@ export default function CasesPage() {
                       </div>
                     </div>
 
-                    <h3 className="text-lg sm:text-xl font-black text-primary mb-3 group-hover:text-blue-600 transition-colors leading-tight">
+                    <h3 className="mb-3 text-lg sm:text-xl font-black leading-tight text-primary transition-colors group-hover:text-[var(--color-accent)]">
                       {caseType.title}
                     </h3>
 
@@ -211,7 +211,7 @@ export default function CasesPage() {
       )}
 
       {/* All Cases Section */}
-      <section className="py-16 sm:py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50/30 relative overflow-hidden">
+      <section className="relative overflow-hidden bg-[#fbf7f0] py-16 sm:py-20">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-20 -left-20 w-48 h-48 sm:w-96 sm:h-96 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 rounded-full blur-2xl sm:blur-3xl" />
@@ -226,7 +226,7 @@ export default function CasesPage() {
             </Badge>
 
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-primary mb-4 sm:mb-6 leading-tight">
-              <span className="bg-gradient-to-r from-primary via-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              <span className="text-primary">
                 Complete Case
               </span>
               <br />
@@ -269,7 +269,7 @@ export default function CasesPage() {
                 </div>
 
                 <CardContent className="p-4 sm:p-6 flex-grow flex flex-col">
-                  <h3 className="text-lg sm:text-xl font-black text-primary mb-3 group-hover:text-blue-600 transition-colors leading-tight">
+                  <h3 className="mb-3 text-lg sm:text-xl font-black leading-tight text-primary transition-colors group-hover:text-[var(--color-accent)]">
                     {caseType.title}
                   </h3>
 
@@ -292,7 +292,7 @@ export default function CasesPage() {
                   </div>
 
                   <div className="mt-auto space-y-3">
-                    <Button asChild className="w-full bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90 text-white font-bold shadow-lg hover:shadow-xl">
+                    <Button asChild className="w-full bg-primary text-white font-bold shadow-lg hover:bg-primary/90 hover:shadow-xl">
                       <Link href={`/cases/${caseType.slug}`}>
                         <span className="flex items-center justify-center">
                           Check Eligibility
@@ -315,7 +315,7 @@ export default function CasesPage() {
       </section>
 
       {/* Enhanced CTA Section */}
-      <section className="py-16 sm:py-20 bg-gradient-to-br from-primary to-blue-600 relative overflow-hidden">
+      <section className="relative overflow-hidden bg-primary py-16 sm:py-20">
         {/* Background Pattern */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12" />
