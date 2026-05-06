@@ -43,6 +43,26 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const scrollToHashTarget = () => {
+      if (typeof window === "undefined") return;
+      const { hash } = window.location;
+      if (!hash) return;
+
+      const target = document.querySelector(hash);
+      if (!target) return;
+
+      window.setTimeout(() => {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 160);
+    };
+
+    scrollToHashTarget();
+    window.addEventListener("hashchange", scrollToHashTarget);
+
+    return () => window.removeEventListener("hashchange", scrollToHashTarget);
+  }, [pathname]);
+
   const navItems = [
     { href: "/cases", label: "All Cases" },
     { href: "#case-types", label: "Case Types" },
@@ -50,7 +70,7 @@ const Header = () => {
     { href: "#faq", label: "FAQ" },
   ];
 
-  const handleMobileNav = (href: string) => {
+  const handleNav = (href: string) => {
     setMobileMenuOpen(false);
 
     if (href.startsWith("#")) {
@@ -59,6 +79,7 @@ const Header = () => {
         return;
       }
 
+      window.history.pushState(null, "", href);
       const target = document.querySelector(href);
       if (target) {
         window.setTimeout(() => {
@@ -130,15 +151,28 @@ const Header = () => {
 
                 {navItems.map((item) => (
                   <NavigationMenuItem key={item.href}>
-                    <NavigationMenuLink
-                      asChild
-                      className={cn(
-                        navigationMenuTriggerStyle(),
-                        "bg-transparent px-4 text-[12px] font-medium uppercase tracking-[0.24em] text-white hover:bg-white/5 hover:text-[var(--color-accent)]"
-                      )}
-                    >
-                      <Link href={item.href}>{item.label}</Link>
-                    </NavigationMenuLink>
+                    {item.href.startsWith("#") ? (
+                      <button
+                        type="button"
+                        onClick={() => handleNav(item.href)}
+                        className={cn(
+                          navigationMenuTriggerStyle(),
+                          "bg-transparent px-4 text-[12px] font-medium uppercase tracking-[0.24em] text-white hover:bg-white/5 hover:text-[var(--color-accent)]"
+                        )}
+                      >
+                        {item.label}
+                      </button>
+                    ) : (
+                      <NavigationMenuLink
+                        asChild
+                        className={cn(
+                          navigationMenuTriggerStyle(),
+                          "bg-transparent px-4 text-[12px] font-medium uppercase tracking-[0.24em] text-white hover:bg-white/5 hover:text-[var(--color-accent)]"
+                        )}
+                      >
+                        <Link href={item.href}>{item.label}</Link>
+                      </NavigationMenuLink>
+                    )}
                   </NavigationMenuItem>
                 ))}
               </NavigationMenuList>
@@ -162,7 +196,9 @@ const Header = () => {
               asChild
               className="border border-[rgba(194,148,90,0.65)] bg-transparent px-6 text-[11px] font-medium uppercase tracking-[0.28em] text-white hover:bg-[var(--color-accent)] hover:text-primary"
             >
-              <Link href="#case-evaluation">Free Consultation</Link>
+              <button type="button" onClick={() => handleNav("#case-evaluation")}>
+                Free Consultation
+              </button>
             </Button>
           </div>
 
@@ -183,7 +219,7 @@ const Header = () => {
                     <button
                       key={item.href}
                       type="button"
-                      onClick={() => handleMobileNav(item.href)}
+                      onClick={() => handleNav(item.href)}
                       className="border-b border-white/10 py-4 text-[13px] uppercase tracking-[0.24em] text-white/80 transition hover:text-[var(--color-accent)]"
                     >
                       {item.label}
@@ -191,7 +227,7 @@ const Header = () => {
                   ))}
                   <button
                     type="button"
-                    onClick={() => handleMobileNav("#case-evaluation")}
+                    onClick={() => handleNav("#case-evaluation")}
                     className="mt-8 inline-flex items-center justify-center border border-[rgba(194,148,90,0.65)] px-5 py-4 text-[12px] uppercase tracking-[0.28em] text-white transition hover:bg-[var(--color-accent)] hover:text-primary"
                   >
                     Free Consultation
