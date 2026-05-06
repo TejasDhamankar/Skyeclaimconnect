@@ -135,7 +135,7 @@ const CaseDescription = ({ caseData }: CaseDescriptionProps) => {
                     <div className="bg-primary/10 rounded-full p-3 mr-4">
                       <FileText className="w-6 h-6 text-primary" />
                     </div>
-                    <h3 className="text-2xl font-black text-primary">Case Background</h3>
+                    <h3 className="text-2xl font-black text-primary">Case Overview</h3>
                   </div>
 
                   <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
@@ -228,10 +228,7 @@ const CaseDescription = ({ caseData }: CaseDescriptionProps) => {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12" />
                 <CardContent className="p-6 relative z-10">
                   <div className="flex items-center mb-6">
-                    <div className="bg-accent/20 rounded-full p-3 mr-3">
-                      <Scale className="w-5 h-5 text-accent" />
-                    </div>
-                    <h3 className="text-xl font-black">Case Facts</h3>
+                    <h3 className="text-xl font-black">Claim Snapshot</h3>
                   </div>
 
                   <div className="space-y-4">
@@ -303,8 +300,8 @@ const CaseDescription = ({ caseData }: CaseDescriptionProps) => {
                     Speak directly with our legal team for personalized guidance.
                   </p>
                   <Button asChild variant="outline" className="w-full border-2 border-primary text-primary hover:bg-primary/10">
-                    <a href="tel:+14844819642" className="flex items-center justify-center">
-                      Call +1 484-481-9642
+                    <a href="tel:+15550102020" className="flex items-center justify-center">
+                      Call +1 555-010-2020
                     </a>
                   </Button>
                 </CardContent>

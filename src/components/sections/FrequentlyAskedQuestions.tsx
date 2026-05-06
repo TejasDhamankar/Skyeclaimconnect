@@ -129,11 +129,11 @@ const FrequentlyAskedQuestions = () => {
   };
 
   return (
-    <section id="faq" className="py-16 sm:py-20 md:py-28 bg-gradient-to-br from-gray-50 via-white to-purple-50/30 relative overflow-hidden">
+    <section id="faq" className="py-16 sm:py-20 md:py-28 bg-gradient-to-br from-slate-50 via-white to-cyan-50/40 relative overflow-hidden">
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute -top-20 sm:-top-40 -left-20 sm:-left-40 w-48 h-48 sm:w-96 sm:h-96 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 rounded-full blur-2xl sm:blur-3xl"
+          className="absolute -top-20 sm:-top-40 -left-20 sm:-left-40 w-48 h-48 sm:w-96 sm:h-96 bg-gradient-to-br from-cyan-500/10 to-teal-500/10 rounded-full blur-2xl sm:blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             rotate: [0, 180, 360],
@@ -141,7 +141,7 @@ const FrequentlyAskedQuestions = () => {
           transition={{ duration: 25, repeat: Infinity }}
         />
         <motion.div
-          className="absolute -bottom-20 sm:-bottom-40 -right-20 sm:-right-40 w-48 h-48 sm:w-96 sm:h-96 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full blur-2xl sm:blur-3xl"
+          className="absolute -bottom-20 sm:-bottom-40 -right-20 sm:-right-40 w-48 h-48 sm:w-96 sm:h-96 bg-gradient-to-br from-amber-500/10 to-orange-500/10 rounded-full blur-2xl sm:blur-3xl"
           animate={{
             scale: [1.2, 1, 1.2],
             rotate: [360, 180, 0],
@@ -189,11 +189,11 @@ const FrequentlyAskedQuestions = () => {
           </Badge>
 
           <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-primary mb-4 sm:mb-6 leading-tight">
-            <span className="bg-gradient-to-r from-primary via-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary via-cyan-700 to-teal-700 bg-clip-text text-transparent">
               Get Answers.
             </span>
             <br />
-            <span className="text-gray-800">Get Started.</span>
+            <span className="text-gray-800">Move Forward.</span>
           </h2>
 
           <motion.div
@@ -205,8 +205,8 @@ const FrequentlyAskedQuestions = () => {
           />
 
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Get clear answers to common questions about our legal services and
-            <span className="font-bold text-primary"> the claims process.</span>
+            Review straightforward guidance on case fit, timelines, and documentation.
+            <span className="font-bold text-primary"> Built to help you decide your next legal step with confidence.</span>
           </p>
         </motion.div>
 
@@ -234,7 +234,7 @@ const FrequentlyAskedQuestions = () => {
                     variants={itemVariants}
                     className="group"
                   >
-                    <Card className="h-full border-none shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-blue-50/50 group-hover:from-white group-hover:to-primary/5">
+                    <Card className="h-full border-none shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-cyan-50/50 group-hover:from-white group-hover:to-primary/5">
                       <CardContent className="p-4 sm:p-6">
                         <div className="flex items-start space-x-3 mb-3">
                           <div className="bg-primary/10 rounded-full p-2 flex-shrink-0">
@@ -244,7 +244,7 @@ const FrequentlyAskedQuestions = () => {
                             {faq.category}
                           </Badge>
                         </div>
-                        <h4 className="font-bold text-primary text-sm sm:text-base mb-3 leading-tight group-hover:text-blue-600 transition-colors">
+                        <h4 className="font-bold text-primary text-sm sm:text-base mb-3 leading-tight group-hover:text-cyan-700 transition-colors">
                           {faq.question}
                         </h4>
                         <p className="text-gray-600 text-xs sm:text-sm leading-relaxed line-clamp-3">
@@ -325,7 +325,7 @@ const FrequentlyAskedQuestions = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             {/* Contact Card */}
-            <Card className="border-none shadow-xl bg-gradient-to-br from-primary to-blue-600 text-white overflow-hidden relative">
+            <Card className="border-none shadow-xl bg-gradient-to-br from-slate-900 to-cyan-900 text-white overflow-hidden relative">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12" />
               <CardContent className="p-6 sm:p-8 relative z-10">
                 <div className="flex items-center space-x-3 mb-6">
@@ -357,9 +357,9 @@ const FrequentlyAskedQuestions = () => {
                     whileTap={{ scale: 0.98 }}
                   >
                     <Button asChild variant="outline" className="w-full bg-white/10 hover:bg-white/20 text-white border-white/30 hover:border-white/50 font-bold">
-                      <a href="tel:+14844819642" className="flex items-center justify-center text-sm sm:text-base">
+                      <a href="tel:+15550102020" className="flex items-center justify-center text-sm sm:text-base">
                         <Phone className="mr-2 h-4 w-4" />
-                        Call +1 484-481-9642
+                        Call +1 555-010-2020
                       </a>
                     </Button>
                   </motion.div>

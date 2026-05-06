@@ -39,13 +39,13 @@ export async function generateMetadata({
 
   if (!caseData) {
     return {
-      title: "Case Not Found | Lex Claim Connect",
+      title: "Case Not Found | Skye Claim Connect",
       description: "The requested case information could not be found."
     };
   }
 
   return {
-    title: `${caseData.title} Claims & Compensation | Lex Claim Connect - Free Review`,
+    title: `${caseData.title} Claims & Compensation | Skye Claim Connect - Free Review`,
     description: `${caseData.shortDescription} Get your free case evaluation. No fees.`,
     keywords: `${caseData.title.toLowerCase()}, legal claims, compensation, lawsuit, free case review, no win no fee, ${caseData.category?.toLowerCase()}`,
     openGraph: {
@@ -83,7 +83,7 @@ export default async function CaseDetailPage({
         <div className="container mx-auto px-4">
           <div className="text-center mb-8">
             <h2 className="text-2xl sm:text-3xl font-black text-primary mb-4">
-              Why Choose Lex Claim Connect for Your {caseData.title} Case?
+              Why Choose Skye Claim Connect for Your {caseData.title} Case?
             </h2>
             <p className="text-gray-600 max-w-3xl mx-auto">
               We've successfully represented thousands of clients in cases similar to yours.
@@ -148,7 +148,7 @@ export default async function CaseDetailPage({
                 </Button>
 
                 <Button asChild variant="outline" size="lg" className="border-2 border-red-300 text-red-700 hover:bg-red-50 font-bold px-8 py-6 text-lg w-full sm:w-auto">
-                  <a href="tel:+14844819642">
+                  <a href="tel:+15550102020">
                     <Phone className="mr-3 h-5 w-5" />
                     Call Emergency Line
                   </a>
@@ -189,7 +189,6 @@ export default async function CaseDetailPage({
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <Badge className="mb-4 px-4 py-2 bg-primary/5 text-primary border-primary/30 font-bold">
-              <Scale className="w-4 h-4 mr-2" />
               OTHER ACTIVE CASES
             </Badge>
             <h2 className="text-2xl sm:text-3xl font-black text-primary mb-4">
@@ -312,9 +311,9 @@ export default async function CaseDetailPage({
               </Button>
 
               <Button asChild variant="outline" size="lg" className="bg-white/10 hover:bg-white/20 text-white border-2 border-white/30 hover:border-white/50 font-bold px-8 py-6 text-lg backdrop-blur-sm w-full sm:w-auto">
-                <a href="tel:+14844819642">
+                <a href="tel:+15550102020">
                   <Phone className="mr-3 h-5 w-5" />
-                  Call +1 484-481-9642
+                  Call +1 555-010-2020
                 </a>
               </Button>
             </div>

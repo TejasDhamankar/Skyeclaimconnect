@@ -41,6 +41,7 @@ interface ExtendedFormData extends CaseEvaluationFormData {
   agreeToTermsAndContact: boolean;
   agreeToDisclaimer: boolean;
   trustedFormCertUrl?: string;
+  jornayaLeadId?: string;
 }
 
 const CaseEvaluation = () => {
@@ -58,6 +59,7 @@ const CaseEvaluation = () => {
     agreeToTermsAndContact: false,
     agreeToDisclaimer: false,
     trustedFormCertUrl: "",
+    jornayaLeadId: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -195,6 +197,7 @@ const CaseEvaluation = () => {
       const response = await axios.post("/api/contact", {
         ...formData,
         trustedFormCertUrl: tfUrl,
+        jornayaLeadId: formData.jornayaLeadId || "",
       });
 
       console.log("Form submission response:", response.data);
@@ -220,6 +223,7 @@ const CaseEvaluation = () => {
         agreeToTermsAndContact: false,
         agreeToDisclaimer: false,
         trustedFormCertUrl: "",
+        jornayaLeadId: "",
       });
     } catch (error) {
       console.error("Form submission error:", error);
@@ -233,7 +237,7 @@ const CaseEvaluation = () => {
   };
 
   return (
-    <section id="case-evaluation" className="py-20 p bg-gradient-to-br from-gray-50 to-blue-50/30">
+    <section id="case-evaluation" className="py-20 bg-gradient-to-br from-slate-50 via-white to-cyan-50/40">
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center mb-12"
@@ -250,26 +254,19 @@ const CaseEvaluation = () => {
           </Badge>
 
           <h2 className="text-4xl md:text-6xl font-black text-primary mb-6 leading-tight">
-            <span className="bg-gradient-to-r from-primary via-blue-600 to-indigo-600 bg-clip-text text-transparent">
-              Get Your Free
+            <span className="bg-gradient-to-r from-primary via-cyan-700 to-teal-700 bg-clip-text text-transparent">
+              Begin Your
             </span>
             <br />
-            <span className="text-gray-800">Case Evaluation</span>
+            <span className="text-gray-800">Secure Claim Review</span>
           </h2>
         </motion.div>
 
         <div className="max-w-3xl mx-auto">
-          <Card className="border-none shadow-2xl p-0 overflow-hidden bg-white/95 backdrop-blur-sm">
-            <CardHeader className="bg-gradient-to-r from-primary/5 to-blue-50 text-center pb-8">
+          <Card className="border border-slate-200/80 shadow-2xl p-0 overflow-hidden bg-white/95 backdrop-blur-sm">
+            <CardHeader className="bg-gradient-to-r from-slate-100 to-cyan-50 text-center pb-8">
               <CardTitle className="text-2xl mt-4 font-bold text-primary">
-                Find Out If You Qualify for Compensation
-                {/* Debug info - remove in production */}
-                {process.env.NODE_ENV === 'development' && (
-                  <div className="text-xs text-gray-500 mt-2">
-                    TF Status: {isTrustedFormLoaded ? '✅ Loaded' : '❌ Not Loaded'} |
-                    URL: {formData.trustedFormCertUrl ? '✅ Has URL' : '❌ No URL'}
-                  </div>
-                )}
+                Verify Eligibility In Minutes
               </CardTitle>
             </CardHeader>
 
@@ -286,6 +283,12 @@ const CaseEvaluation = () => {
                 method="POST"
                 id="case-evaluation-form"
               >
+                <input
+                  type="hidden"
+                  name="jornayaLeadId"
+                  value={formData.jornayaLeadId || ""}
+                  readOnly
+                />
                 <div className="space-y-6">
                   {/* Contact Information */}
                   <div>
@@ -372,7 +375,6 @@ const CaseEvaluation = () => {
                     <div className="space-y-6">
                       <div>
                         <Label htmlFor="caseType" className="text-sm font-bold text-gray-700 flex items-center">
-                          <Scale className="w-4 h-4 mr-2 text-primary" />
                           Case Type*
                         </Label>
                         <Select
@@ -410,7 +412,7 @@ const CaseEvaluation = () => {
                   </div>
 
                   {/* Required Agreements */}
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 space-y-4">
+                  <div className="bg-cyan-50 border border-cyan-200 rounded-lg p-6 space-y-4">
                     <h4 className="font-bold text-primary mb-4">Required Agreements</h4>
 
                     <div className="flex items-start space-x-3">
@@ -442,9 +444,9 @@ const CaseEvaluation = () => {
                           By clicking the button above, I provide my electronic signature hereby agreeing to this
                           website&apos;s{" "}
                           <a href="/privacy-policy" className="font-semibold underline">PRIVACY POLICY</a>,{" "}
-                          <a href="/privacy-policy" className="font-semibold underline">TCPA Consent</a>{" "}
+                          <a href="/tcpa-consent" className="font-semibold underline">TCPA Consent</a>{" "}
                           &amp;{" "}
-                          <a href="/disclaimer" className="font-semibold underline">Privacy Disclaimer</a>.
+                          <a href="/privacy-disclaimer" className="font-semibold underline">Privacy Disclaimer</a>.
                         </span>
                         <span className="block">
                           I expressly consent to receive marketing &amp; telemarketing contact, including calls to my
@@ -492,7 +494,7 @@ const CaseEvaluation = () => {
                     <Button
                       type="submit"
                       name="submit"
-                      className="bg-gradient-to-r from-accent to-yellow-400 text-primary font-black px-8 py-6 text-lg w-full sm:w-auto"
+                      className="bg-gradient-to-r from-accent to-amber-500 text-primary font-black px-8 py-6 text-lg w-full sm:w-auto"
                       disabled={isSubmitting}
                       data-tf-element-role="submit"
                     >
@@ -507,7 +509,7 @@ const CaseEvaluation = () => {
                         </>
                       ) : (
                         <>
-                          <span data-tf-element-role="submit-text">Get My Free Evaluation</span>
+                          <span data-tf-element-role="submit-text">Submit My Claim Review</span>
                           <ArrowRight className="ml-3 w-5 h-5" />
                         </>
                       )}

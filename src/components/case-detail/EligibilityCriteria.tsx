@@ -325,9 +325,9 @@ const EligibilityCriteria = ({ caseData }: EligibilityCriteriaProps) => {
                     whileTap={{ scale: 0.98 }}
                   >
                     <Button asChild className="w-full bg-primary hover:bg-primary/90 text-white font-bold">
-                      <a href="tel:+14844819642">
+                      <a href="tel:+15550102020">
                         <Phone className="mr-2 h-4 w-4" />
-                        Call +1 484-481-9642
+                        Call +1 555-010-2020
                       </a>
                     </Button>
                   </motion.div>
@@ -361,10 +361,6 @@ const EligibilityCriteria = ({ caseData }: EligibilityCriteriaProps) => {
             <Card className="border-none shadow-2xl bg-gradient-to-br from-primary to-blue-600 text-white overflow-hidden relative">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12" />
               <CardContent className="p-8 sm:p-12 text-center relative z-10">
-                <div className="bg-accent/20 rounded-full p-4 inline-flex items-center justify-center mb-6">
-                  <Scale className="w-8 h-8 text-accent" />
-                </div>
-
                 <h3 className="text-2xl sm:text-3xl font-black mb-4">
                   <span className="bg-gradient-to-r from-accent to-yellow-400 bg-clip-text text-transparent">
                     Think You Qualify?
@@ -397,9 +393,9 @@ const EligibilityCriteria = ({ caseData }: EligibilityCriteriaProps) => {
                     whileTap={{ scale: 0.98 }}
                   >
                     <Button asChild variant="outline" size="lg" className="bg-white/10 hover:bg-white/20 text-white border-2 border-white/30 hover:border-white/50 font-bold px-8 py-6 text-lg backdrop-blur-sm w-full sm:w-auto">
-                      <a href="tel:+14844819642">
+                      <a href="tel:+15550102020">
                         <Phone className="mr-3 h-5 w-5" />
-                        Call +1 484-481-9642
+                        Call +1 555-010-2020
                       </a>
                     </Button>
                   </motion.div>

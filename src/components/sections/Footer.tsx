@@ -19,7 +19,6 @@ import {
   Star,
   Users,
   CheckCircle,
-  Scale,
   DollarSign,
   Zap
 } from "lucide-react";
@@ -70,6 +69,8 @@ const Footer = () => {
 
   const legalLinks = [
     { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "TCPA Consent", href: "/tcpa-consent" },
+    { label: "Privacy Disclaimer", href: "/privacy-disclaimer" },
     { label: "Terms of Service", href: "/terms-of-service" },
     { label: "Legal Disclaimer", href: "/disclaimer" },
     { label: "Accessibility", href: "/accessibility" }
@@ -77,7 +78,7 @@ const Footer = () => {
 
   const trustStats = [
 
-    { icon: Users, label: "10,000+", sublabel: "Clients Helped", color: "text-blue-400" },
+    { icon: Users, label: "10,000+", sublabel: "Clients Helped", color: "text-cyan-300" },
     { icon: Award, label: "98%", sublabel: "Success Rate", color: "text-purple-400" },
     { icon: Clock, label: "24/7", sublabel: "Available", color: "text-accent" }
   ];
@@ -105,7 +106,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gradient-to-br from-primary via-blue-900 to-indigo-900 text-primary-foreground relative overflow-hidden">
+    <footer className="bg-gradient-to-br from-slate-950 via-slate-900 to-cyan-950 text-primary-foreground relative overflow-hidden">
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         {/* Animated Gradient Overlay */}
@@ -158,16 +159,16 @@ const Footer = () => {
           </Badge>
 
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-4 sm:mb-6 leading-tight">
-            <span className="bg-gradient-to-r from-accent to-yellow-400 bg-clip-text text-transparent">
-              Get the Compensation
+            <span className="bg-gradient-to-r from-accent to-amber-400 bg-clip-text text-transparent">
+              Move Your Claim
             </span>
             <br />
-            <span className="text-white">You Deserve Today</span>
+            <span className="text-white">Forward Today</span>
           </h2>
 
           <p className="text-lg sm:text-xl text-white/80 mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed">
-            Don't wait. Many cases have strict deadlines.
-            <span className="font-bold text-accent"> Call now for your free consultation.</span>
+            Get clear next steps from a responsive intake team.
+            <span className="font-bold text-accent"> Start with a free, confidential review.</span>
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
@@ -176,9 +177,9 @@ const Footer = () => {
               whileTap={{ scale: 0.98 }}
             >
               <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-primary font-black px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg shadow-xl hover:shadow-2xl w-full sm:w-auto">
-                <a href="tel:+14844819642" className="flex items-center justify-center">
+                <a href="tel:+15550102020" className="flex items-center justify-center">
                   <Phone className="mr-3 h-5 w-5" />
-                  Call +1 484-481-9642
+                  Call +1 555-010-2020
                   <motion.div
                     animate={{ x: [0, 5, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
@@ -221,11 +222,11 @@ const Footer = () => {
               <div className="flex items-center mb-6">
                 <img
                   src="/logo.png"
-                  alt="Lex Claim Connect Logo"
+                  alt="Skye Claim Connect Logo"
                   className="w-auto h-20 sm:h-24"
                 />
               </div>
-              <span className="text-xl sm:text-2xl font-black text-white mb-4 block">Lex Claim Connect</span>
+              <span className="text-xl sm:text-2xl font-black text-white mb-4 block">Skye Claim Connect</span>
               <p className="mb-6 text-white/80 leading-relaxed text-sm sm:text-base">
                 We're dedicated to helping victims of negligence receive the compensation they deserve. Our experienced legal team handles mass tort and class action cases nationwide with a
                 <span className="font-bold text-accent"> 98% success rate.</span>
@@ -235,15 +236,15 @@ const Footer = () => {
               <div className="bg-white/10 rounded-xl p-4 sm:p-6 backdrop-blur-sm">
                 <h4 className="font-bold text-white mb-4 flex items-center text-sm sm:text-base">
                   <Award className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-accent" />
-                  Why Choose Us
+                  Intake Advantages
                 </h4>
                 <div className="grid grid-cols-2 gap-4 text-xs sm:text-sm">
                   <div className="flex items-center text-white/80">
                     <Shield className="w-3 h-3 sm:w-4 sm:h-4 mr-2 text-green-400" />
-                    <span>No Win, No Fee</span>
+                    <span>No Upfront Charge</span>
                   </div>
                   <div className="flex items-center text-white/80">
-                    <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-2 text-blue-400" />
+                    <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-2 text-cyan-300" />
                     <span>24/7 Support</span>
                   </div>
                   <div className="flex items-center text-white/80">
@@ -261,7 +262,7 @@ const Footer = () => {
                 <Badge variant="outline" className="mr-3 bg-accent/20 text-accent border-accent/30 text-xs px-2 py-1">
                   CONTACT
                 </Badge>
-                Get In Touch
+                Contact Intake
               </h3>
               <div className="space-y-6">
                 <motion.div
@@ -269,14 +270,14 @@ const Footer = () => {
                   whileHover={{ x: 5 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <a href="tel:+14844819642" className="flex items-start">
+                  <a href="tel:+15550102020" className="flex items-start">
                     <div className="bg-accent/20 rounded-full p-3 mr-4 group-hover:bg-accent/30 transition-colors">
                       <Phone className="w-5 h-5 text-accent" />
                     </div>
                     <div>
                       <p className="font-bold text-white mb-1 text-sm sm:text-base">Call Us Now</p>
                       <p className="text-accent font-black text-lg sm:text-xl hover:text-accent/80 transition-colors">
-                        +1 484-481-9642
+                        +1 555-010-2020
                       </p>
                       <p className="text-white/60 text-xs sm:text-sm">Available 24/7 for emergencies</p>
                     </div>
@@ -288,14 +289,14 @@ const Footer = () => {
                   whileHover={{ x: 5 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <a href="mailto:support@lexclaimconnect.com" className="flex items-start">
-                    <div className="bg-blue-400/20 rounded-full p-3 mr-4 group-hover:bg-blue-400/30 transition-colors">
-                      <Mail className="w-5 h-5 text-blue-400" />
+                  <a href="mailto:support@skyeclaimconnect.com" className="flex items-start">
+                    <div className="bg-cyan-400/20 rounded-full p-3 mr-4 group-hover:bg-cyan-400/30 transition-colors">
+                      <Mail className="w-5 h-5 text-cyan-300" />
                     </div>
                     <div>
                       <p className="font-bold text-white mb-1 text-sm sm:text-base">Email Us</p>
-                      <p className="text-blue-400 font-medium hover:text-blue-300 transition-colors break-all text-sm sm:text-base">
-                        support@lexclaimconnect.com
+                      <p className="text-cyan-300 font-medium hover:text-cyan-200 transition-colors break-all text-sm sm:text-base">
+                        support@skyeclaimconnect.com
                       </p>
                       <p className="text-white/60 text-xs sm:text-sm">We respond within 24 hours</p>
                     </div>
@@ -344,7 +345,6 @@ const Footer = () => {
                     href="/cases"
                     className="text-accent hover:text-accent/80 transition-colors flex items-center font-bold group text-sm sm:text-base"
                   >
-                    <Scale className="mr-2 w-4 h-4" />
                     View All Case Types
                     <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </Link>
@@ -383,7 +383,7 @@ const Footer = () => {
                     >
                       <Link href="#case-evaluation" className="flex items-center justify-center text-sm sm:text-base">
                         <CheckCircle size={16} className="mr-2" />
-                        Get Free Consultation
+                        Request Free Review
                         <ArrowRight size={16} className="ml-2" />
                       </Link>
                     </Button>
@@ -405,7 +405,7 @@ const Footer = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
         >
           <div className="flex flex-col sm:flex-row items-center justify-between mb-6">
-            <p className="mb-4 sm:mb-0">© {currentYear} Lex Claim Connect. All Rights Reserved.</p>
+            <p className="mb-4 sm:mb-0">© {currentYear} Skye Claim Connect. All Rights Reserved.</p>
 
           </div>
 
@@ -443,5 +443,6 @@ const Footer = () => {
 };
 
 export default Footer;
+
 
 

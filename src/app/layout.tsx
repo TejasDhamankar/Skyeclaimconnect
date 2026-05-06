@@ -7,8 +7,9 @@ import Footer from "@/components/sections/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Lex Claim Connect - Professional Legal Representation",
-  description: "Expert legal assistance for mass tort and class action cases including Camp Lejeune, 3M Earplugs, Roundup, and more. Free case evaluations available.",
+  title: "Skye Claim Connect | Trusted Claims & Legal Intake",
+  description:
+    "Professional claim intake for Depo Provera, Roblox, Rideshare, Talc, Ozempic, MVA, and WTC cases. Free consultation available.",
 };
 
 export default function RootLayout({
@@ -33,3 +34,4 @@ export default function RootLayout({
     </html>
   );
 }
+

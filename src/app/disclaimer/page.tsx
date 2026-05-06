@@ -2,8 +2,8 @@ import React from "react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Legal Disclaimer | Lex Claim Connect",
-  description: "Important legal disclaimers regarding the use of Lex Claim Connect services",
+  title: "Legal Disclaimer | Skye Claim Connect",
+  description: "Important legal disclaimers regarding the use of Skye Claim Connect services",
 };
 
 const DisclaimerPage = () => {
@@ -22,7 +22,7 @@ const DisclaimerPage = () => {
         <p>Specific legal advice should be sought from a qualified attorney regarding your particular situation. Contacting us through this website or submitting information does not create an attorney-client relationship.</p>
 
         <h2 className="text-2xl font-semibold mt-8 mb-4">3. No Attorney-Client Relationship</h2>
-        <p>Lex Claim Connect is not a law firm. We connect potential claimants with attorneys who handle mass tort and class action cases. No attorney-client relationship is created by your use of this website or by your submission of information through our case evaluation forms.</p>
+        <p>Skye Claim Connect is not a law firm. We connect potential claimants with attorneys who handle mass tort and class action cases. No attorney-client relationship is created by your use of this website or by your submission of information through our case evaluation forms.</p>
         <p>An attorney-client relationship is only formed when you have signed a written agreement with a specific law firm that explicitly states they will represent you.</p>
 
         <h2 className="text-2xl font-semibold mt-8 mb-4">4. No Guarantee of Results</h2>
@@ -33,7 +33,7 @@ const DisclaimerPage = () => {
         <p>Our free case evaluation is a preliminary assessment only. It is not a comprehensive legal analysis and does not guarantee that your case will qualify for legal representation or compensation. The evaluation is based solely on the information you provide, which may not include all relevant facts and circumstances.</p>
 
         <h2 className="text-2xl font-semibold mt-8 mb-4">6. Third-Party Referrals</h2>
-        <p>Cases submitted through this website may be referred to third-party law firms or attorneys. Lex Claim Connect may receive a referral fee from these third parties in accordance with applicable state bar rules. The payment of such fees does not increase the amount charged to clients.</p>
+        <p>Cases submitted through this website may be referred to third-party law firms or attorneys. Skye Claim Connect may receive a referral fee from these third parties in accordance with applicable state bar rules. The payment of such fees does not increase the amount charged to clients.</p>
 
         <h2 className="text-2xl font-semibold mt-8 mb-4">7. Statutes of Limitations</h2>
         <p>Every legal claim is subject to a statute of limitations, which is a time limit for filing a lawsuit. These time limits vary by state and by the type of claim. Failure to file a lawsuit within the applicable statute of limitations will likely result in the loss of your right to pursue that claim.</p>
@@ -47,8 +47,8 @@ const DisclaimerPage = () => {
 
         <h2 className="text-2xl font-semibold mt-8 mb-4">10. Contact Information</h2>
         <p>If you have any questions about this disclaimer, please contact us at:</p>
-        <p>Email: support@lexclaimconnect.com</p>
-        <p>Phone: +1 484-481-9642</p>
+        <p>Email: support@skyeclaimconnect.com</p>
+        <p>Phone: +1 555-010-2020</p>
         {/* <p>Address: 613, Ridge Road, 201 Monmouth Junction, NJ, 08852</p> */}
       </div>
     </div>
@@ -56,5 +56,6 @@ const DisclaimerPage = () => {
 };
 
 export default DisclaimerPage;
+
 
 

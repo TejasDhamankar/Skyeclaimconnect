@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ExternalLink, Scale, Heart, Leaf, Shield, Clock, CheckCircle, Star, TrendingUp } from "lucide-react";
+import { ArrowRight, ExternalLink, Heart, Leaf, Shield, Clock, CheckCircle, Star, TrendingUp, Scale } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -49,33 +49,50 @@ const CaseTypesList = () => {
 
   // Enhanced case categories with icons and descriptions
   const caseCategories = {
+    priority: {
+      cases: caseTypes.filter(c =>
+        [
+          "depo-provera",
+          "roblox-addiction",
+          "rideshare",
+          "talcum-powder",
+          "ozempic",
+          "motor-vehicle-accident",
+          "wtc-exposure",
+        ].includes(c.slug)
+      ),
+      icon: Star,
+      title: "Featured Claims",
+      description: "Priority cases for Skye Claim Connect clients",
+      color: "from-amber-600 to-orange-700"
+    },
     all: {
       cases: caseTypes,
       icon: Scale,
       title: "All Cases",
       description: "Complete range of active litigation",
-      color: "from-blue-500 to-indigo-600"
+      color: "from-slate-700 to-cyan-700"
     },
     medical: {
       cases: caseTypes.filter(c => ["cpap", "hernia-mesh", "nec-formula", "talcum-powder", "exactech"].includes(c.slug)),
       icon: Heart,
       title: "Medical & Pharmaceutical",
       description: "Defective medical devices & dangerous drugs",
-      color: "from-red-500 to-pink-600"
+      color: "from-teal-700 to-cyan-700"
     },
     environmental: {
       cases: caseTypes.filter(c => ["camp-lejeune", "roundup", "paraquat", "pfas"].includes(c.slug)),
       icon: Leaf,
       title: "Environmental",
       description: "Toxic exposure & environmental hazards",
-      color: "from-green-500 to-emerald-600"
+      color: "from-cyan-700 to-teal-700"
     },
     military: {
       cases: caseTypes.filter(c => ["3m-earplugs", "camp-lejeune"].includes(c.slug)),
       icon: Shield,
       title: "Military & Veterans",
       description: "Cases affecting our service members",
-      color: "from-purple-500 to-violet-600"
+      color: "from-slate-700 to-slate-900"
     }
   };
 
@@ -114,8 +131,8 @@ const CaseTypesList = () => {
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-primary/90">
               <div className="text-center text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                 <CheckCircle className="w-12 h-12 mx-auto mb-3 text-accent" />
-                <p className="font-bold text-lg mb-2">View Case Details</p>
-                <p className="text-sm opacity-90">Learn about compensation</p>
+                <p className="font-bold text-lg mb-2">Review Eligibility</p>
+                <p className="text-sm opacity-90">Check claim-fit criteria</p>
               </div>
             </div>
           </div>
@@ -140,7 +157,7 @@ const CaseTypesList = () => {
               </div>
               <div className="flex items-center">
                 <Shield className="w-4 h-4 mr-1 text-green-500" />
-                <span>No Win, No Fee</span>
+                <span>Risk-Free Intake</span>
               </div>
             </div>
           </CardContent>
@@ -160,11 +177,11 @@ const CaseTypesList = () => {
   );
 
   return (
-    <section id="case-types" className="py-20 md:py-28 bg-gradient-to-br from-gray-50 via-white to-blue-50/30 relative overflow-hidden">
+    <section id="case-types" className="py-20 md:py-28 bg-gradient-to-br from-slate-50 via-white to-cyan-50/40 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-accent/10 to-yellow-400/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-primary/10 to-blue-500/10 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-primary/10 to-cyan-500/10 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -177,12 +194,11 @@ const CaseTypesList = () => {
           transition={{ duration: 0.7 }}
         >
           <Badge variant="outline" className="mb-6 px-4 py-2 text-primary border-primary/30 bg-primary/5 font-bold backdrop-blur-sm">
-            <Scale className="w-4 h-4 mr-2" />
             ACTIVE LITIGATION
           </Badge>
 
           <h2 className="text-4xl md:text-6xl font-black text-primary mb-6 leading-tight">
-            <span className="bg-gradient-to-r from-primary via-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary via-cyan-700 to-teal-700 bg-clip-text text-transparent">
               Mass Tort &
             </span>
             <br />
@@ -192,20 +208,20 @@ const CaseTypesList = () => {
           <div className="w-24 h-1 bg-gradient-to-r from-accent to-yellow-400 mx-auto mb-6 rounded-full" />
 
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Our firm is actively handling these significant cases. If you've been affected,
-            <span className="font-bold text-primary"> you may be entitled to substantial compensation.</span>
+            We support high-priority injury and exposure claims with structured legal intake.
+            <span className="font-bold text-primary"> If your experience matches these criteria, your claim may qualify.</span>
           </p>
 
           {/* Trust Indicators */}
           <div className="flex items-center justify-center space-x-8 mt-8">
 
             <div className="flex items-center text-gray-600">
-              <Shield className="w-5 h-5 text-blue-500 mr-2" />
+              <Shield className="w-5 h-5 text-cyan-700 mr-2" />
               <span className="font-medium">No Fees</span>
             </div>
             <div className="flex items-center text-gray-600">
-              <Clock className="w-5 h-5 text-purple-500 mr-2" />
-              <span className="font-medium">Free Consultation</span>
+              <Clock className="w-5 h-5 text-amber-600 mr-2" />
+              <span className="font-medium">Fast Case Screening</span>
             </div>
           </div>
         </motion.div>
@@ -215,18 +231,16 @@ const CaseTypesList = () => {
           <Tabs defaultValue="all" className="w-full" onValueChange={setActiveTab}>
             {/* Enhanced Tab Navigation */}
             <div className="flex justify-center mb-12">
-              <TabsList className="grid h-full grid-cols-4 gap-2 w-full max-w-5xl bg-white/50 backdrop-blur-sm p-2 rounded-2xl shadow-lg border border-white/20">
+              <TabsList className="grid h-full grid-cols-5 gap-2 w-full max-w-5xl bg-white/50 backdrop-blur-sm p-2 rounded-2xl shadow-lg border border-white/20">
                 {Object.entries(caseCategories).map(([key, category]) => {
-                  const Icon = category.icon;
                   return (
                     <TabsTrigger
                       key={key}
                       value={key}
-                      className="flex items-center space-x-2 px-6 py-4 rounded-xl font-bold transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg"
+                      className="flex items-center space-x-2 px-6 py-4 rounded-xl font-bold transition-all duration-300 data-[state=active]:bg-gradient-to-r data-[state=active]:from-slate-800 data-[state=active]:to-cyan-800 data-[state=active]:text-white data-[state=active]:shadow-lg"
                     >
-                      <Icon className="w-4 h-4" />
                       <span className="hidden sm:inline">{category.title}</span>
-                      <span className="sm:hidden">{key === 'all' ? 'All' : key === 'medical' ? 'Medical' : key === 'environmental' ? 'Env.' : 'Military'}</span>
+                      <span className="sm:hidden">{key === 'priority' ? 'Top' : key === 'all' ? 'All' : key === 'medical' ? 'Medical' : key === 'environmental' ? 'Env.' : 'Military'}</span>
                     </TabsTrigger>
                   );
                 })}
@@ -290,9 +304,9 @@ const CaseTypesList = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.6 }}
         >
-          <div className="bg-gradient-to-br from-primary to-blue-600 rounded-3xl p-8 md:p-12 text-white shadow-2xl">
+          <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-cyan-900 rounded-3xl p-8 md:p-12 text-white shadow-2xl">
             <h3 className="text-2xl md:text-3xl font-bold mb-4">
-              Don't Wait - Time Limits Apply
+              Filing Windows Can Be Limited
             </h3>
             <p className="text-lg opacity-90 mb-8 max-w-2xl mx-auto">
               Many cases have strict deadlines. Get your free consultation today and learn about your legal options.
@@ -307,9 +321,9 @@ const CaseTypesList = () => {
               </Button>
 
               <Button asChild variant="outline" size="lg" className="bg-white/10 hover:bg-white/20 text-white border-2 border-white/30 hover:border-white/50 font-bold px-8 py-6 text-lg backdrop-blur-sm transition-all duration-300">
-                <a href="tel:+14844819642" className="flex items-center">
+                <a href="tel:+15550102020" className="flex items-center">
                   <Shield className="mr-3 h-5 w-5" />
-                  Call +1 484-481-9642
+                  Call +1 555-010-2020
                 </a>
               </Button>
             </div>

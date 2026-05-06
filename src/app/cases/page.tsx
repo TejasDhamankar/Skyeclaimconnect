@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { getAllCaseTypes } from "@/lib/utils";
 
 export const metadata = {
-  title: "Active Mass Tort & Class Action Cases | Lex Claim Connect - Free Review",
+  title: "Active Mass Tort & Class Action Cases | Skye Claim Connect - Free Review",
   description: "View all active mass tort and class action cases. Get your free case evaluation today. ",
   keywords: "mass tort cases, class action lawsuits, legal claims, compensation, free case review, no win no fee"
 };
@@ -350,8 +350,8 @@ export default function CasesPage() {
               </Button>
 
               <Button asChild variant="outline" size="lg" className="bg-white/10 hover:bg-white/20 text-white border-2 border-white/30 hover:border-white/50 font-bold px-8 py-6 text-lg backdrop-blur-sm w-full sm:w-auto">
-                <a href="tel:+14844819642">
-                  Call +1 484-481-9642
+                <a href="tel:+15550102020">
+                  Call +1 555-010-2020
                 </a>
               </Button>
             </div>
@@ -364,5 +364,6 @@ export default function CasesPage() {
     </main>
   );
 }
+
 
 

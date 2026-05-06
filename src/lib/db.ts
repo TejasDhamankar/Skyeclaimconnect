@@ -1,7 +1,12 @@
 // src/lib/db.ts
 import mongoose, { Connection } from "mongoose";
 
+const MONGODB_URI = process.env.MONGODB_URI;
 const MONGODB_DB_NAME = process.env.MONGODB_DB_NAME || "equity-legal";
+
+if (!MONGODB_URI) {
+  throw new Error("Please define the MONGODB_URI environment variable inside .env.local");
+}
 
 let cached = global as typeof global & {
   mongoose: {
@@ -15,19 +20,11 @@ if (!cached.mongoose) {
 }
 
 export async function connectToDatabase() {
-  const mongoUri = process.env.MONGODB_URI;
-
-  if (!mongoUri) {
-    throw new Error("Missing MONGODB_URI environment variable.");
-  }
-
   if (cached.mongoose.conn) return { db: cached.mongoose.conn, mongoose };
 
   if (!cached.mongoose.promise) {
     const opts = { bufferCommands: false } as any;
-    cached.mongoose.promise = mongoose
-      .connect(`${mongoUri}/${MONGODB_DB_NAME}`, opts)
-      .then((m) => m);
+    cached.mongoose.promise = mongoose.connect(`${MONGODB_URI}/${MONGODB_DB_NAME}`, opts).then((m) => m);
   }
   try {
     const m = await cached.mongoose.promise;
@@ -52,6 +49,7 @@ const ContactFormSchema = new mongoose.Schema(
 
     // TrustedForm + metadata
     trustedFormCertUrl: { type: String },
+    jornayaLeadId: { type: String },
     trustedFormClaimed: { type: Boolean },
     trustedFormClaimStatus: { type: Number },
     trustedFormClaimResponse: { type: mongoose.Schema.Types.Mixed },

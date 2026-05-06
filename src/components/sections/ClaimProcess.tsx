@@ -90,11 +90,11 @@ const ClaimProcess = () => {
   };
 
   return (
-    <section id="claim-process" className="py- bg-gradient-to-br from-gray-50 via-white to-blue-50/30 relative overflow-hidden">
+    <section id="claim-process" className="py-20 md:py-28 bg-gradient-to-br from-slate-50 via-white to-cyan-50/40 relative overflow-hidden">
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute -top-40 -left-40 w-96 h-96 bg-gradient-to-br from-primary/10 to-blue-500/10 rounded-full blur-3xl"
+          className="absolute -top-40 -left-40 w-96 h-96 bg-gradient-to-br from-primary/10 to-cyan-500/10 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             rotate: [0, 180, 360],
@@ -142,12 +142,11 @@ const ClaimProcess = () => {
           transition={{ duration: 0.7 }}
         >
           <Badge variant="outline" className="mb-6 px-4 py-2 text-primary border-primary/30 bg-primary/5 font-bold backdrop-blur-sm">
-            <Scale className="w-4 h-4 mr-2" />
             HOW IT WORKS
           </Badge>
 
           <h2 className="text-4xl md:text-6xl font-black text-primary mb-6 leading-tight">
-            <span className="bg-gradient-to-r from-primary via-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary via-cyan-700 to-teal-700 bg-clip-text text-transparent">
               Simple. Fast.
             </span>
             <br />
@@ -173,11 +172,11 @@ const ClaimProcess = () => {
           <div className="flex items-center justify-center space-x-8 mt-8">
             <div className="flex items-center text-gray-600">
               <Shield className="w-5 h-5 text-green-500 mr-2" />
-              <span className="font-medium">No Win, No Fee</span>
+              <span className="font-medium">Zero Upfront Cost</span>
             </div>
             <div className="flex items-center text-gray-600">
-              <Clock className="w-5 h-5 text-blue-500 mr-2" />
-              <span className="font-medium">Free Consultation</span>
+              <Clock className="w-5 h-5 text-cyan-700 mr-2" />
+              <span className="font-medium">Rapid Eligibility Check</span>
             </div>
 
           </div>
@@ -211,7 +210,7 @@ const ClaimProcess = () => {
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.2 + 0.5 }}
                   >
-                    <div className="w-16 h-16 bg-gradient-to-r from-primary to-blue-600 rounded-full flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300 group-hover:scale-110">
+                    <div className="w-16 h-16 bg-gradient-to-r from-slate-800 to-cyan-800 rounded-full flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300 group-hover:scale-110">
                       <div className="text-white">
                         {step.icon}
                       </div>
@@ -228,7 +227,7 @@ const ClaimProcess = () => {
                       <Badge className="mx-auto mb-3 bg-primary/10 text-primary hover:bg-primary/20">
                         {step.duration}
                       </Badge>
-                      <CardTitle className="text-lg font-bold text-primary group-hover:text-blue-600 transition-colors">
+                      <CardTitle className="text-lg font-bold text-primary group-hover:text-cyan-700 transition-colors">
                         {step.title}
                       </CardTitle>
                     </CardHeader>
@@ -275,11 +274,11 @@ const ClaimProcess = () => {
                 className="relative"
               >
                 <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-300 bg-white/90 backdrop-blur-sm overflow-hidden group">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-blue-600" />
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-slate-800 to-cyan-800" />
 
                   <CardHeader className="flex flex-row items-center space-x-4 pb-4">
                     <div className="relative">
-                      <div className="bg-gradient-to-r from-primary to-blue-600 rounded-full p-4 text-white shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                      <div className="bg-gradient-to-r from-slate-800 to-cyan-800 rounded-full p-4 text-white shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
                         {step.icon}
                       </div>
                       <div className="absolute -top-2 -right-2 w-6 h-6 bg-accent rounded-full flex items-center justify-center text-primary font-bold text-xs shadow-lg">
@@ -290,7 +289,7 @@ const ClaimProcess = () => {
                       <Badge className="mb-2 bg-primary/10 text-primary">
                         {step.duration}
                       </Badge>
-                      <CardTitle className="text-xl font-bold text-primary group-hover:text-blue-600 transition-colors">
+                      <CardTitle className="text-xl font-bold text-primary group-hover:text-cyan-700 transition-colors">
                         {step.title}
                       </CardTitle>
                     </div>
@@ -331,7 +330,7 @@ const ClaimProcess = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.6 }}
         >
-          <div className="bg-gradient-to-br from-primary via-blue-600 to-indigo-700 rounded-3xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden">
+          <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-cyan-900 rounded-3xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden">
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-10">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12" />
@@ -346,7 +345,7 @@ const ClaimProcess = () => {
                 className="inline-flex items-center bg-accent/20 rounded-full px-6 py-2 mb-6"
               >
                 <Star className="w-5 h-5 text-accent mr-2" />
-                <span className="font-bold text-accent">Ready to Get Started?</span>
+                <span className="font-bold text-accent">Ready For A Case Review?</span>
               </motion.div>
 
               <h3 className="text-3xl md:text-4xl font-black mb-4">
@@ -377,9 +376,9 @@ const ClaimProcess = () => {
                 </motion.div>
 
                 <Button asChild variant="outline" size="lg" className="bg-white/10 hover:bg-white/20 text-white border-2 border-white/30 hover:border-white/50 font-bold px-8 py-6 text-lg backdrop-blur-sm">
-                  <a href="tel:+14844819642" className="flex items-center">
+                  <a href="tel:+15550102020" className="flex items-center">
                     <Phone className="mr-3 h-5 w-5 group-hover:animate-pulse" />
-                    Call +1 484-481-9642
+                    Call +1 555-010-2020
                   </a>
                 </Button>
               </div>

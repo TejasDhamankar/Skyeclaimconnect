@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const getAllCaseTypes = (): CaseType[] => {
-  return [
+  const cases: CaseType[] = [
     // Existing cases
     {
       id: "1",
@@ -483,6 +483,8 @@ export const getAllCaseTypes = (): CaseType[] => {
       id: "19",
       slug: "talcum-powder",
       title: "Talcum Powder Cancer",
+      category: "Talc",
+      featured: true,
       shortDescription: "Women who developed ovarian cancer after using talcum powder products may be entitled to compensation.",
       fullDescription: "For decades, many women used talcum powder products, such as Johnson & Johnson's Baby Powder and Shower to Shower, for feminine hygiene purposes. However, scientific research has suggested a potential link between talcum powder use in the genital area and an increased risk of ovarian cancer. Lawsuits allege that talc manufacturers, particularly Johnson & Johnson, were aware of studies indicating this risk but failed to warn consumers. In October 2023, Johnson & Johnson reached a $6.475 billion settlement agreement to resolve most talcum powder lawsuits after their previous attempts to handle the litigation through bankruptcy were rejected by courts. The controversy centers around the potential contamination of talc with asbestos (a known carcinogen) due to the natural proximity of these minerals in the earth, as well as concerns about talc particles themselves traveling to the ovaries and causing inflammation that may lead to cancer.",
       imageUrl: "/images/cases/talcum-powder.avif",
@@ -585,6 +587,8 @@ export const getAllCaseTypes = (): CaseType[] => {
       id: "22",
       slug: "depo-provera",
       title: "Depo Provera Brain Tumor",
+      category: "Depo Provera",
+      featured: true,
       shortDescription: "Women who used Depo Provera birth control shots and developed brain tumors may be eligible for compensation.",
       fullDescription: "Depo Provera is a long-acting birth control injection that contains medroxyprogesterone acetate, a synthetic hormone. Recent studies have suggested a potential link between prolonged use of Depo Provera and an increased risk of developing meningiomas, which are typically benign brain tumors that develop in the protective membranes surrounding the brain and spinal cord. A 2024 study published in the BMJ found that women who used Depo Provera for more than a year had a significantly increased risk of developing these brain tumors. Lawsuits allege that Pfizer, the manufacturer of Depo Provera, failed to adequately warn patients and healthcare providers about this serious potential side effect, despite evidence suggesting the connection between synthetic progestins and brain tumor development.",
       imageUrl: "/images/cases/depo.webp",
@@ -624,6 +628,8 @@ export const getAllCaseTypes = (): CaseType[] => {
       id: "23",
       slug: "roblox-addiction",
       title: "Roblox Gaming Addiction",
+      category: "Roblox",
+      featured: true,
       shortDescription: "Children who developed gaming addiction and related mental health issues from Roblox may be eligible for compensation.",
       fullDescription: "Roblox is an online gaming platform popular among children and teenagers that allows users to create and play games created by other users. Lawsuits allege that Roblox Corporation deliberately designed their platform to be addictive, using psychological manipulation techniques similar to gambling mechanisms to keep young users engaged for excessive amounts of time. These techniques allegedly include variable reward schedules, social pressure mechanics, fear of missing out (FOMO) triggers, and in-game purchases that create compulsive spending behaviors. Parents and mental health experts have raised concerns about children spending 8-12 hours daily on the platform, neglecting sleep, school, social relationships, and physical health. Lawsuits claim that Roblox knew or should have known that their design choices could lead to addictive behaviors in children but prioritized profits over child welfare.",
       imageUrl: "/images/cases/roblox.png",
@@ -662,7 +668,9 @@ export const getAllCaseTypes = (): CaseType[] => {
     {
       id: "24",
       slug: "motor-vehicle-accident",
-      title: "Motor Vehicle Accident",
+      title: "MVA (Motor Vehicle Accident)",
+      category: "MVA",
+      featured: true,
       shortDescription: "Victims of car accidents, truck collisions, motorcycle crashes, and other motor vehicle incidents may be entitled to compensation.",
       fullDescription: "Motor vehicle accidents are one of the leading causes of personal injury in the United States, resulting in millions of injuries and thousands of deaths each year. These accidents can involve cars, trucks, motorcycles, buses, and other vehicles, and can be caused by various factors including distracted driving, drunk driving, speeding, reckless driving, poor weather conditions, mechanical failures, or defective auto parts. Victims of motor vehicle accidents may suffer from a wide range of injuries, from minor cuts and bruises to severe traumatic brain injuries, spinal cord damage, broken bones, and internal injuries. In many cases, these accidents result from another party's negligence, entitling victims to compensation for their medical expenses, lost wages, pain and suffering, and other damages.",
       imageUrl: "/images/cases/mva.jpg",
@@ -703,7 +711,9 @@ export const getAllCaseTypes = (): CaseType[] => {
     {
       id: "27",
       slug: "rideshare",
-      title: "Rideshare ",
+      title: "Rideshare Accident Claims",
+      category: "Rideshare",
+      featured: true,
       shortDescription: "Passengers, drivers, and pedestrians injured in Uber or Lyft crashes may be eligible for compensation.",
       fullDescription: "Rideshare accidents involve Uber, Lyft, and other app-based transportation services. Liability can depend on whether the driver was logged into the app, waiting for a ride, or actively transporting a passenger, which affects which insurance policies apply. Injured passengers, rideshare drivers, pedestrians, bicyclists, and occupants of other vehicles may all have claims. These cases often require careful investigation of driver conduct, app status, and available insurance coverage to maximize compensation.",
       imageUrl: "/images/cases/mva.jpg",
@@ -737,6 +747,73 @@ export const getAllCaseTypes = (): CaseType[] => {
         {
           question: "What should I do after a rideshare crash?",
           answer: "Seek medical care, call the police, and report the crash in the rideshare app. Take photos of the scene, collect driver and witness information, and save trip details or screenshots. Avoid giving recorded statements to insurers before getting legal advice."
+        }
+      ]
+    },
+    {
+      id: "28",
+      slug: "ozempic",
+      title: "Ozempic & GLP-1 Injury Claims",
+      category: "Ozempic",
+      featured: true,
+      shortDescription: "Patients who used Ozempic or similar GLP-1 medications and developed severe gastrointestinal injuries may qualify for compensation.",
+      fullDescription: "Ozempic and similar GLP-1 receptor agonists have been linked in litigation to serious gastrointestinal complications, including gastroparesis and bowel obstruction. Claimants allege manufacturers failed to adequately warn about persistent stomach paralysis symptoms and related injuries that disrupted daily life and required ongoing treatment.",
+      imageUrl: "/images/cases/tylenol.jpg",
+      compensationInfo: "Compensation may include medical costs, lost wages, diminished earning capacity, and pain and suffering. Value depends on diagnosis severity, treatment duration, and long-term functional impact.",
+      eligibilityCriteria: [
+        "Used Ozempic or a similar GLP-1 medication",
+        "Diagnosed with severe GI injury such as gastroparesis or bowel obstruction",
+        "Symptoms required medical treatment and documentation"
+      ],
+      relatedConditions: [
+        "Gastroparesis",
+        "Persistent Vomiting",
+        "Bowel Obstruction",
+        "Severe Abdominal Pain",
+        "Nutritional Complications"
+      ],
+      faqs: [
+        {
+          question: "Do I need a formal diagnosis to file an Ozempic claim?",
+          answer: "A documented diagnosis strongly supports claim eligibility. Medical records that connect medication use with ongoing gastrointestinal injury are important."
+        },
+        {
+          question: "Are only Ozempic users eligible?",
+          answer: "Potential eligibility may also include users of similar GLP-1 medications, depending on injury pattern and legal criteria."
+        }
+      ]
+    },
+    {
+      id: "29",
+      slug: "wtc-exposure",
+      title: "WTC Exposure Illness Claims",
+      category: "WTC",
+      featured: true,
+      shortDescription: "First responders, workers, and residents exposed to World Trade Center toxins may be eligible for compensation and benefits support.",
+      fullDescription: "After the September 11, 2001 attacks, responders and nearby communities were exposed to hazardous dust and debris. Many later developed respiratory disease, cancers, and other chronic conditions. Claims may involve compensation pathways and support through qualified legal intake and documentation.",
+      imageUrl: "/images/cases/camp.jpg",
+      compensationInfo: "Compensation and benefits can vary based on diagnosis, exposure history, and eligibility program requirements. Claims can include medical support, lost income recovery, and wrongful death damages where applicable.",
+      eligibilityCriteria: [
+        "Presence in a qualifying WTC exposure zone or response role",
+        "Diagnosed with a qualifying condition tied to WTC exposure",
+        "Supporting employment, location, or medical documentation"
+      ],
+      relatedConditions: [
+        "Chronic Respiratory Disease",
+        "Asthma",
+        "Sinus Disease",
+        "GERD",
+        "Qualifying Cancers",
+        "PTSD"
+      ],
+      faqs: [
+        {
+          question: "Can non-first responders qualify for WTC-related claims?",
+          answer: "Yes. Depending on exposure history, local workers, students, residents, and cleanup personnel may also qualify."
+        },
+        {
+          question: "What records are most useful for WTC intake?",
+          answer: "Medical records, proof of location or employment during exposure windows, and prior benefit-program documentation are typically helpful."
         }
       ]
     },
@@ -826,6 +903,83 @@ export const getAllCaseTypes = (): CaseType[] => {
     }
 
   ];
+
+  const copyOverrides: Record<string, { short: string; background: string; compensation?: string }> = {
+    "depo-provera": {
+      short: "Clients diagnosed with meningioma after extended Depo Provera use may qualify for legal review and compensation.",
+      background:
+        "Depo Provera litigation centers on whether long-term injectable contraceptive use increased brain-tumor risk without adequate warning language. Case review typically evaluates duration of use, diagnosis timing, imaging records, and treatment history.",
+    },
+    "roblox-addiction": {
+      short: "Families reporting harmful compulsive Roblox use and measurable behavioral impact may be eligible for claim screening.",
+      background:
+        "Roblox-related claims focus on alleged addictive platform design, in-game spending loops, and youth harm. Screening usually reviews usage patterns, school or clinical impacts, purchase history, and mental-health documentation.",
+    },
+    rideshare: {
+      short: "Passengers, drivers, and third parties injured in Uber/Lyft crashes can be evaluated for layered insurance recovery.",
+      background:
+        "Rideshare claims depend on app status at collision time, fault allocation, and available policy tiers. Intake typically includes police reporting, app trip records, injury treatment timelines, and insurer correspondence.",
+    },
+    "talcum-powder": {
+      short: "Long-term talc users diagnosed with ovarian cancer or related conditions may qualify for compensation review.",
+      background:
+        "Talc litigation reviews whether consistent product use and diagnosis patterns support product-liability claims. Evaluation generally includes brand history, use duration, pathology records, and treatment documentation.",
+    },
+    ozempic: {
+      short: "Consumers with severe GI injury after Ozempic or similar GLP-1 use may qualify for legal intake.",
+      background:
+        "GLP-1 injury claims examine persistent gastrointestinal complications, warning adequacy, and continuity of care. Case screening commonly requires prescribing records, symptom progression, and specialist evaluations.",
+    },
+    "motor-vehicle-accident": {
+      short: "MVA claim intake supports victims with documented injuries, fault evidence, and unresolved financial loss.",
+      background:
+        "Motor-vehicle cases are assessed around negligence, policy limits, medical causation, and wage impact. Strong files usually include crash reports, treatment records, imaging, and documented work disruption.",
+    },
+    "wtc-exposure": {
+      short: "Individuals with qualifying WTC exposure and related illness can be assessed for compensation and benefit pathways.",
+      background:
+        "WTC exposure matters often involve complex proof of location, role, and diagnosis eligibility. Intake typically reviews residence/employment history, exposure windows, and certified medical evidence.",
+    },
+    pfas: {
+      short: "PFAS-exposed communities and individuals with linked illnesses may be eligible for claim evaluation.",
+      background:
+        "PFAS cases focus on contamination pathways, duration of exposure, and medically supported outcomes. Reviews usually include water-source history, environmental reports, and condition-specific treatment records.",
+    },
+    "pfas-water-contamination": {
+      short: "PFAS water contamination victims with documented health impact may qualify for structured legal review.",
+      background:
+        "These claims evaluate contamination source, chronic exposure, and diagnosis connection. Intake generally combines water-quality history with medical documentation and timing analysis.",
+    },
+    exactech: {
+      short: "Patients with premature Exactech implant failure may be eligible for revision-related compensation claims.",
+      background:
+        "Exactech litigation examines implant model, oxidation risk, failure timeline, and revision need. Strong intake files include implant labels, surgeon notes, imaging, and post-op complication history.",
+    },
+    "hair-straightener-cancer": {
+      short: "Frequent chemical straightener users with reproductive cancer diagnoses may qualify for case screening.",
+      background:
+        "Hair-straightener litigation evaluates product exposure frequency, diagnosis type, and treatment burden. Intake often reviews brand history, pathology records, and longitudinal care documentation.",
+    },
+  };
+
+  const defaultShort = (title: string) =>
+    `${title} claim evaluations are available for individuals with documented injury, exposure, or product-use history.`;
+
+  const defaultBackground = (title: string) =>
+    `${title} case screening focuses on legal eligibility, documentation strength, and timeline fit. Intake teams typically review diagnosis records, exposure or usage history, and supporting evidence before referral.`;
+
+  const defaultComp = (title: string) =>
+    `Potential ${title.toLowerCase()} compensation may include medical costs, lost income, ongoing care, and non-economic damages, depending on documented severity and liability evidence.`;
+
+  return cases.map((c) => {
+    const override = copyOverrides[c.slug] || copyOverrides[c.slug.replace("-water-contamination", "")] || null;
+    return {
+      ...c,
+      shortDescription: override?.short ?? defaultShort(c.title),
+      fullDescription: override?.background ?? defaultBackground(c.title),
+      compensationInfo: override?.compensation ?? defaultComp(c.title),
+    };
+  });
 };
 
 

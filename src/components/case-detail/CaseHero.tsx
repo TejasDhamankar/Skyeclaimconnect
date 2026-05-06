@@ -169,7 +169,6 @@ const CaseHero = ({ caseData }: CaseHeroProps) => {
                 )}
 
                 <Badge className="bg-accent/20 text-accent border-accent/30 px-3 py-1 text-xs sm:text-sm font-bold backdrop-blur-sm">
-                  <Scale className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5" />
                   NO WIN, NO FEE
                 </Badge>
               </motion.div>
@@ -243,9 +242,9 @@ const CaseHero = ({ caseData }: CaseHeroProps) => {
                       size="lg"
                       className="w-full border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 px-6 sm:px-8 py-4 sm:py-6 font-bold text-base sm:text-lg backdrop-blur-sm transition-all duration-300"
                     >
-                      <a href="tel:+14844819642" className="flex text-black items-center justify-center">
+                      <a href="tel:+15550102020" className="flex text-black items-center justify-center">
                         <Phone size={20} className="mr-2 sm:mr-3 text-black" />
-                        <span className=" text-black sm:inline">Call +1 484-481-9642</span>
+                        <span className=" text-black sm:inline">Call +1 555-010-2020</span>
                         <span className="sm:hidden ">Call Now</span>
                       </a>
                     </Button>

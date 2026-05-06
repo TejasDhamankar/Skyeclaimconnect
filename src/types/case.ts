@@ -2,6 +2,8 @@ export interface CaseType {
   id: string;
   slug: string;
   title: string;
+  category?: string;
+  featured?: boolean;
   shortDescription: string;
   fullDescription: string;
   imageUrl: string;

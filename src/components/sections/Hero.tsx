@@ -66,7 +66,7 @@ const Hero = () => {
           className="object-cover object-center"
         />
         {/* Multiple overlay layers for depth */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-blue-900/90 to-indigo-900/95" />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-950/95 via-cyan-950/90 to-slate-900/95" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
         {/* Animated geometric shapes */}
@@ -79,7 +79,7 @@ const Hero = () => {
           transition={{ duration: 4, repeat: Infinity }}
         />
         <motion.div
-          className="absolute bottom-20 right-20 w-48 h-48 bg-purple-500/20 rounded-full blur-xl"
+          className="absolute bottom-20 right-20 w-48 h-48 bg-amber-500/20 rounded-full blur-xl"
           animate={{
             scale: [1.2, 1, 1.2],
             opacity: [0.2, 0.5, 0.2],
@@ -87,7 +87,7 @@ const Hero = () => {
           transition={{ duration: 6, repeat: Infinity }}
         />
         <motion.div
-          className="absolute top-1/2 left-1/2 w-64 h-64 bg-blue-400/10 rounded-full blur-2xl"
+          className="absolute top-1/2 left-1/2 w-64 h-64 bg-cyan-300/10 rounded-full blur-2xl"
           animate={{
             x: [-100, 100, -100],
             y: [-50, 50, -50],
@@ -111,7 +111,7 @@ const Hero = () => {
               className="border-accent/50 bg-accent/10 text-accent px-6 py-2 mb-8 font-bold text-sm backdrop-blur-sm hover:bg-accent/20 transition-all duration-300"
             >
               <Shield className="w-4 h-4 mr-2" />
-              FREE 24/7 Consultation
+              PRIVATE CLAIM SCREENING
             </Badge>
           </motion.div>
 
@@ -119,15 +119,15 @@ const Hero = () => {
           <motion.div variants={itemVariants}>
             <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight tracking-tight">
               <span className="bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
-                Get The
+                Build A
               </span>
               <br />
               <span className="bg-gradient-to-r from-accent via-yellow-300 to-accent bg-clip-text text-transparent">
-                Compensation
+                Strong Claim
               </span>
               <br />
               <span className="bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
-                You Deserve
+                With Confidence
               </span>
             </h1>
           </motion.div>
@@ -152,8 +152,9 @@ const Hero = () => {
             className="text-xl md:text-2xl mb-12 text-gray-100 font-medium max-w-3xl mx-auto leading-relaxed"
             variants={itemVariants}
           >
-            We connect victims with top attorneys who fight for maximum compensation
+            Skye Claim Connect connects qualified claimants with legal teams through a fast, secure, and client-first intake experience.
             <span className="block mt-3 text-base md:text-lg text-gray-200">
+              Depo Provera | Roblox | Rideshare | Talc | Ozempic | MVA | WTC
             </span>
           </motion.p>
 
@@ -174,7 +175,7 @@ const Hero = () => {
               >
                 <Link href="#case-evaluation" className="flex items-center relative z-10">
                   <CheckCircle className="mr-3 h-5 w-5" />
-                  Start My Free Case Review
+                  Check My Claim Eligibility
                   <motion.div
                     className="ml-3"
                     animate={{ x: [0, 5, 0] }}
@@ -209,9 +210,9 @@ const Hero = () => {
                 size="lg"
                 className="bg-white/10 hover:bg-white/20 text-white border-2 border-white/30 hover:border-white/50 font-bold px-8 py-6 text-lg backdrop-blur-sm shadow-xl group"
               >
-                <a href="tel:+14844819642" className="flex items-center">
+                <a href="tel:+15550102020" className="flex items-center">
                   <Phone className="mr-3 h-5 w-5 group-hover:animate-pulse" />
-                  Call +1 484-481-9642
+                  Call +1 555-010-2020
                 </a>
               </Button>
             </motion.div>
@@ -271,7 +272,7 @@ const Hero = () => {
               whileHover={{ scale: 1.05 }}
             >
               <Shield className="w-5 h-5 text-green-400" />
-              <span className="text-sm font-medium">No Win, No Fee</span>
+              <span className="text-sm font-medium">Private & Encrypted Intake</span>
             </motion.div>
           </motion.div>
 
@@ -288,7 +289,7 @@ const Hero = () => {
             >
               <Link href="#case-evaluation" className="flex items-center">
                 <Clock className="w-4 h-4 mr-2" />
-                Free Consultation - Act Now!
+                Talk With Intake Team
               </Link>
             </motion.div>
           </motion.div>

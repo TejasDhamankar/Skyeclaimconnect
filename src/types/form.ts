@@ -8,6 +8,7 @@ export interface CaseEvaluationFormData {
   medicalCondition: string;
   additionalInfo: string;
   agreeToTerms: boolean;
+  jornayaLeadId?: string;
   ipAddress?: string;
   userAgent?: string;
   submittedAt?: Date;

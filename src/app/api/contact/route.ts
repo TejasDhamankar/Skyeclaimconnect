@@ -80,7 +80,7 @@ export async function POST(req: NextRequest) {
       try {
         const claim = await claimTrustedFormCertificate(tfUrl, {
           reference: submission._id.toString(),
-          vendor: "lexclaimconnect.com",
+          vendor: "skyeclaimconnect.com",
           email_1: body.email,
           phone_1: body.phone,
         });
@@ -126,3 +126,4 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+
