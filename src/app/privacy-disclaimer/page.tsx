@@ -54,8 +54,8 @@ const PrivacyDisclaimerPage = () => {
 
         <h2 className="text-2xl font-semibold mt-8 mb-4">6. Contact</h2>
         <p>If you have questions about this privacy disclaimer, contact us:</p>
-        <p>Email: support@skyeclaimconnect.com</p>
-        <p>Phone: +1 555-010-2020</p>
+        <p>Email:  intake@skyeclaimconnect.com</p>
+        <p>Phone: 13023070025</p>
       </div>
     </div>
   );

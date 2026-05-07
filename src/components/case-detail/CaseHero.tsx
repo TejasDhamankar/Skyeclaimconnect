@@ -242,9 +242,9 @@ const CaseHero = ({ caseData }: CaseHeroProps) => {
                       size="lg"
                       className="w-full border-2 border-white/30 px-6 sm:px-8 py-4 sm:py-6 font-bold text-base sm:text-lg text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-white/50"
                     >
-                      <a href="tel:+15550102020" className="flex items-center justify-center">
+                      <a href="tel:13023070025" className="flex items-center justify-center">
                         <Phone size={20} className="mr-2 sm:mr-3" />
-                        <span className="sm:inline">Call +1 555-010-2020</span>
+                        <span className="sm:inline">Call 13023070025</span>
                         <span className="sm:hidden">Call Now</span>
                       </a>
                     </Button>

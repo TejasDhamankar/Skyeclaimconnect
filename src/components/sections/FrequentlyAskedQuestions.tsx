@@ -97,9 +97,9 @@ const FrequentlyAskedQuestions = () => {
               variant="ghost"
               className="h-14 rounded-none border border-white/12 bg-white/5 px-8 text-[12px] uppercase tracking-[0.28em] text-white hover:bg-white/10 hover:text-white"
             >
-              <a href="tel:+15550102020">
+              <a href="tel:13023070025">
                 <Phone className="mr-2 h-4 w-4 text-[var(--color-accent)]" />
-                Call +1 555-010-2020
+                Call 13023070025
               </a>
             </Button>
           </div>

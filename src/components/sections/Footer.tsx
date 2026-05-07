@@ -51,12 +51,9 @@ const Footer = () => {
   ];
 
   const caseLinks = [
-    { label: "Camp Lejeune Water Contamination", href: "/cases/camp-lejeune", hot: true },
-    { label: "3M Combat Arms Earplugs", href: "/cases/3m-earplugs", hot: false },
-    { label: "Roundup Weed Killer", href: "/cases/roundup", hot: true },
-    { label: "CPAP Machine Recall", href: "/cases/cpap", hot: false },
-    { label: "NEC Baby Formula", href: "/cases/nec-formula", hot: true },
-    { label: "Hernia Mesh Complications", href: "/cases/hernia-mesh", hot: false }
+    { label: "Depo Provera Brain Tumor", href: "/cases/depo-provera", hot: true },
+    { label: "Roblox Gaming Addiction", href: "/cases/roblox-addiction", hot: true },
+    { label: "Ozempic & GLP-1 Injury Claims", href: "/cases/ozempic", hot: true }
   ];
 
   const quickLinks = [
@@ -177,9 +174,9 @@ const Footer = () => {
               whileTap={{ scale: 0.98 }}
             >
               <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-primary font-black px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg shadow-xl hover:shadow-2xl w-full sm:w-auto">
-                <a href="tel:+15550102020" className="flex items-center justify-center">
+                <a href="tel:13023070025" className="flex items-center justify-center">
                   <Phone className="mr-3 h-5 w-5" />
-                  Call +1 555-010-2020
+                  Call 13023070025
                   <motion.div
                     animate={{ x: [0, 5, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
@@ -270,14 +267,14 @@ const Footer = () => {
                   whileHover={{ x: 5 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <a href="tel:+15550102020" className="flex items-start">
+                  <a href="tel:13023070025" className="flex items-start">
                     <div className="bg-accent/20 rounded-full p-3 mr-4 group-hover:bg-accent/30 transition-colors">
                       <Phone className="w-5 h-5 text-accent" />
                     </div>
                     <div>
                       <p className="font-bold text-white mb-1 text-sm sm:text-base">Call Us Now</p>
                       <p className="text-accent font-black text-lg sm:text-xl hover:text-accent/80 transition-colors">
-                        +1 555-010-2020
+                        13023070025
                       </p>
                       <p className="text-white/60 text-xs sm:text-sm">Available 24/7 for emergencies</p>
                     </div>
@@ -289,14 +286,14 @@ const Footer = () => {
                   whileHover={{ x: 5 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <a href="mailto:support@skyeclaimconnect.com" className="flex items-start">
+                  <a href="mailto:intake@skyeclaimconnect.com" className="flex items-start">
                     <div className="bg-cyan-400/20 rounded-full p-3 mr-4 group-hover:bg-cyan-400/30 transition-colors">
                       <Mail className="w-5 h-5 text-cyan-300" />
                     </div>
                     <div>
                       <p className="font-bold text-white mb-1 text-sm sm:text-base">Email Us</p>
                       <p className="text-cyan-300 font-medium hover:text-cyan-200 transition-colors break-all text-sm sm:text-base">
-                        support@skyeclaimconnect.com
+                        intake@skyeclaimconnect.com
                       </p>
                       <p className="text-white/60 text-xs sm:text-sm">We respond within 24 hours</p>
                     </div>

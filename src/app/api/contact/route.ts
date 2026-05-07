@@ -11,7 +11,7 @@ const APEX_DEPO_SUBMIT_URL =
   "https://apex-services-nbd7z6aa7a-uc.a.run.app/intake/depo/depo/zapier/aldrin/submit";
 const APEX_WEBSOURCE = process.env.APEX_WEBSOURCE || "https://skyeclaimconnect.com";
 const APEX_META_USER_NAME = process.env.APEX_META_USER_NAME || "Skye Claim Connect";
-const APEX_META_USER_EMAIL = process.env.APEX_META_USER_EMAIL || "support@skyeclaimconnect.com";
+const APEX_META_USER_EMAIL = process.env.APEX_META_USER_EMAIL || "intake@skyeclaimconnect.com";
 const APEX_META_CAMPAIGN = process.env.APEX_META_CAMPAIGN || "";
 const APEX_META_SELLER = process.env.APEX_META_SELLER || "";
 

@@ -328,9 +328,9 @@ const CaseFAQ = ({ caseData }: CaseFAQProps) => {
                       whileTap={{ scale: 0.98 }}
                     >
                       <Button asChild variant="outline" className="w-full bg-white/10 hover:bg-white/20 text-white border-white/30 hover:border-white/50 font-bold">
-                        <a href="tel:+15550102020" className="flex items-center justify-center text-sm sm:text-base">
+                        <a href="tel:13023070025" className="flex items-center justify-center text-sm sm:text-base">
                           <Phone className="mr-2 h-4 w-4" />
-                          Call +1 555-010-2020
+                          Call 13023070025
                         </a>
                       </Button>
                     </motion.div>
