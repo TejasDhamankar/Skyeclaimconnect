@@ -52,7 +52,7 @@ const TermsOfServicePage = () => {
         <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. By continuing to access or use our Service after those revisions become effective, you agree to be bound by the revised terms.</p>
 
         <h2 className="text-2xl font-semibold mt-8 mb-4">12. Contact Us</h2>
-        <p>If you have any questions about these Terms, please contact us at support@skyeclaimconnect.com.</p>
+        <p>If you have any questions about these Terms, please contact us at  intake@skyeclaimconnect.com.</p>
       </div>
     </div>
   );

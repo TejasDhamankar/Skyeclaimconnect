@@ -114,9 +114,9 @@ const Hero = () => {
               variant="ghost"
               className="h-14 w-full rounded-none border border-white/15 bg-white/5 px-6 text-[11px] font-medium uppercase tracking-[0.2em] text-white hover:bg-white/10 hover:text-white sm:w-auto sm:px-8 sm:text-[12px] sm:tracking-[0.28em]"
             >
-              <a href="tel:+15550102020">
+              <a href="tel:13023070025">
                 <Phone className="mr-3 h-4 w-4 text-[var(--color-accent)]" />
-                Call +1 555-010-2020
+                Call 13023070025
               </a>
             </Button>
           </div>

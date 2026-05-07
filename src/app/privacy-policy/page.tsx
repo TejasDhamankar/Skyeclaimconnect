@@ -97,8 +97,8 @@ const PrivacyPolicyPage = () => {
 
         <h2 className="text-2xl font-semibold mt-8 mb-4">11. Contact Us</h2>
         <p>If you have any questions about this Privacy Policy, please contact us at:</p>
-        <p>Email: support@skyeclaimconnect.com</p>
-        <p>Phone: +1 555-010-2020</p>
+        <p>Email:  intake@skyeclaimconnect.com</p>
+        <p>Phone: 13023070025</p>
         <p>Address: 613, Ridge Road, 201 Monmouth Junction, NJ, 08852</p>
       </div>
     </div>

@@ -148,7 +148,7 @@ export default async function CaseDetailPage({
                 </Button>
 
                 <Button asChild variant="outline" size="lg" className="w-full sm:w-auto border-2 border-[rgba(194,148,90,0.45)] px-8 py-6 text-lg font-bold text-primary hover:bg-[#f8f1e6]">
-                  <a href="tel:+15550102020">
+                  <a href="tel:13023070025">
                     <Phone className="mr-3 h-5 w-5" />
                     Call Emergency Line
                   </a>
@@ -208,13 +208,13 @@ export default async function CaseDetailPage({
                   <Badge className="bg-green-500/10 text-green-700 text-xs">Active</Badge>
                 </div>
                 <h3 className="mb-2 text-lg font-bold text-primary transition-colors group-hover:text-[var(--color-accent)]">
-                  Camp Lejeune Water Contamination
+                  Depo Provera Brain Tumor
                 </h3>
                 <p className="text-gray-600 text-sm mb-4">
-                  Veterans and family members exposed to contaminated water may qualify for compensation.
+                  Women diagnosed with meningioma after Depo Provera use may qualify for compensation.
                 </p>
                 <Button asChild variant="outline" size="sm" className="w-full">
-                  <Link href="/cases/camp-lejeune">
+                  <Link href="/cases/depo-provera">
                     Learn More
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
@@ -229,13 +229,13 @@ export default async function CaseDetailPage({
                   <Badge className="bg-green-500/10 text-green-700 text-xs">Active</Badge>
                 </div>
                 <h3 className="mb-2 text-lg font-bold text-primary transition-colors group-hover:text-[var(--color-accent)]">
-                  3M Combat Arms Earplugs
+                  Roblox Gaming Addiction
                 </h3>
                 <p className="text-gray-600 text-sm mb-4">
-                  Military veterans with hearing loss from defective earplugs may be eligible.
+                  Families reporting harmful compulsive Roblox use may be eligible for claim screening.
                 </p>
                 <Button asChild variant="outline" size="sm" className="w-full">
-                  <Link href="/cases/3m-earplugs">
+                  <Link href="/cases/roblox-addiction">
                     Learn More
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
@@ -250,13 +250,13 @@ export default async function CaseDetailPage({
                   <Badge className="bg-green-500/10 text-green-700 text-xs">Active</Badge>
                 </div>
                 <h3 className="mb-2 text-lg font-bold text-primary transition-colors group-hover:text-[var(--color-accent)]">
-                  Roundup Weed Killer
+                  Ozempic & GLP-1 Injury Claims
                 </h3>
                 <p className="text-gray-600 text-sm mb-4">
-                  Cancer diagnosis linked to Roundup exposure may qualify for compensation.
+                  Severe GI injuries after Ozempic or similar GLP-1 use may qualify for legal intake.
                 </p>
                 <Button asChild variant="outline" size="sm" className="w-full">
-                  <Link href="/cases/roundup">
+                  <Link href="/cases/ozempic">
                     Learn More
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
@@ -311,9 +311,9 @@ export default async function CaseDetailPage({
               </Button>
 
               <Button asChild variant="outline" size="lg" className="bg-white/10 hover:bg-white/20 text-white border-2 border-white/30 hover:border-white/50 font-bold px-8 py-6 text-lg backdrop-blur-sm w-full sm:w-auto">
-                <a href="tel:+15550102020">
+                <a href="tel:13023070025">
                   <Phone className="mr-3 h-5 w-5" />
-                  Call +1 555-010-2020
+                  Call 13023070025
                 </a>
               </Button>
             </div>

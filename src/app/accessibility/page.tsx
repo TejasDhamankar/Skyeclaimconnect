@@ -45,8 +45,8 @@ const AccessibilityPage = () => {
           <li>Assistance filling out forms or navigating our website</li>
         </ul>
         <p>To request an accommodation or report an accessibility issue, please contact our support team:</p>
-        <p>Email: support@skyeclaimconnect.com</p>
-        <p>Phone: +1 555-010-2020</p>
+        <p>Email:  intake@skyeclaimconnect.com</p>
+        <p>Phone: 13023070025</p>
 
         <h2 className="text-2xl font-semibold mt-8 mb-4">Compatibility with Assistive Technology</h2>
         <p>Our website is designed to be compatible with the following assistive technologies:</p>
@@ -76,8 +76,8 @@ const AccessibilityPage = () => {
 
         <h2 className="text-2xl font-semibold mt-8 mb-4">Feedback</h2>
         <p>We welcome your feedback on the accessibility of Skye Claim Connect. Please let us know if you encounter accessibility barriers:</p>
-        <p>Email: support@skyeclaimconnect.com</p>
-        <p>Phone: +1 555-010-2020</p>
+        <p>Email:  intake@skyeclaimconnect.com</p>
+        <p>Phone: 13023070025</p>
         {/* <p>Address: 613, Ridge Road, 201 Monmouth Junction, NJ, 08852</p> */}
         <p>We try to respond to feedback within 3 business days.</p>
 

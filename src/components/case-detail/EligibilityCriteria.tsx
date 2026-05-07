@@ -325,9 +325,9 @@ const EligibilityCriteria = ({ caseData }: EligibilityCriteriaProps) => {
                     whileTap={{ scale: 0.98 }}
                   >
                     <Button asChild className="w-full bg-primary hover:bg-primary/90 text-white font-bold">
-                      <a href="tel:+15550102020">
+                      <a href="tel:13023070025">
                         <Phone className="mr-2 h-4 w-4" />
-                        Call +1 555-010-2020
+                        Call 13023070025
                       </a>
                     </Button>
                   </motion.div>
@@ -393,9 +393,9 @@ const EligibilityCriteria = ({ caseData }: EligibilityCriteriaProps) => {
                     whileTap={{ scale: 0.98 }}
                   >
                     <Button asChild variant="outline" size="lg" className="bg-white/10 hover:bg-white/20 text-white border-2 border-white/30 hover:border-white/50 font-bold px-8 py-6 text-lg backdrop-blur-sm w-full sm:w-auto">
-                      <a href="tel:+15550102020">
+                      <a href="tel:13023070025">
                         <Phone className="mr-3 h-5 w-5" />
-                        Call +1 555-010-2020
+                        Call 13023070025
                       </a>
                     </Button>
                   </motion.div>

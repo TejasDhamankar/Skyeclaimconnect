@@ -181,7 +181,7 @@ const Header = () => {
 
           <div className="hidden items-center gap-4 lg:flex">
             <a
-              href="tel:+15550102020"
+              href="tel:13023070025"
               className="flex items-center gap-3 border-l border-white/10 pl-5 text-white"
             >
               <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[rgba(194,148,90,0.4)] text-[var(--color-accent)]">
@@ -189,7 +189,7 @@ const Header = () => {
               </span>
               <span>
                 <span className="block text-[10px] uppercase tracking-[0.25em] text-white/55">Call</span>
-                <span className="font-serif text-xl">+1 555-010-2020</span>
+                <span className="font-serif text-xl">13023070025</span>
               </span>
             </a>
             <Button

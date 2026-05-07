@@ -300,8 +300,8 @@ const CaseDescription = ({ caseData }: CaseDescriptionProps) => {
                     Speak directly with our legal team for personalized guidance.
                   </p>
                   <Button asChild variant="outline" className="w-full border-2 border-primary text-primary hover:bg-primary/10">
-                    <a href="tel:+15550102020" className="flex items-center justify-center">
-                      Call +1 555-010-2020
+                    <a href="tel:13023070025" className="flex items-center justify-center">
+                      Call 13023070025
                     </a>
                   </Button>
                 </CardContent>
