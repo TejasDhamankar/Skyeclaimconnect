@@ -20,6 +20,10 @@ export const metadata: Metadata = {
   title: "Skye Claim Connect | Trusted Claims & Legal Intake",
   description:
     "Professional claim intake for Depo Provera, Roblox, Rideshare, Talc, Ozempic, MVA, and WTC cases. Free consultation available.",
+  icons: {
+    icon: "/logo_.png",
+    shortcut: "/logo_.png",
+  },
 };
 
 export default function RootLayout({
