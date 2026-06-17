@@ -34,3 +34,20 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Lead Submission Integrations
+
+The case evaluation form posts to `/api/contact`, which saves the lead in MongoDB and forwards it to external intake systems.
+
+Configure these environment variables in your deployment:
+
+- `PURSUING_API_KEY` for the Pursuing publisher API. If it is not set, the app falls back to the built-in key.
+- `PURSUING_LEADS_URL` if you need to override the default endpoint
+- `TRUSTEDFORM_API_KEY` for TrustedForm certificate claims
+- `APEX_DEPO_SUBMIT_URL` for the Depo Provera-specific outbound integration
+
+For local development, add this to your `.env.local`:
+
+```bash
+PURSUING_API_KEY=Wtjrqo2FIN0JzxJ7P8yPNRKcsfw7TakEGyeSXM2KAJUIK2oO
+```

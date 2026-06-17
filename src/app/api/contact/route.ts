@@ -6,6 +6,10 @@ export const runtime = "nodejs";
 
 const TF_USERNAME = "API";
 const TF_API_KEY = process.env.TRUSTEDFORM_API_KEY || "";
+const PURSUING_API_KEY_FALLBACK = "Wtjrqo2FIN0JzxJ7P8yPNRKcsfw7TakEGyeSXM2KAJUIK2oO";
+const PURSUING_API_KEY = process.env.PURSUING_API_KEY || PURSUING_API_KEY_FALLBACK;
+const PURSUING_LEADS_URL =
+  process.env.PURSUING_LEADS_URL || "https://pursuing.com/api/publisher/leads";
 const APEX_DEPO_SUBMIT_URL =
   process.env.APEX_DEPO_SUBMIT_URL ||
   "https://apex-services-nbd7z6aa7a-uc.a.run.app/intake/depo/depo/zapier/aldrin/submit";
@@ -39,6 +43,31 @@ async function submitDepoLeadToApex(payload: Record<string, unknown>) {
   };
 }
 
+async function submitLeadToPursuing(payload: Record<string, unknown>) {
+  const res = await fetch(PURSUING_LEADS_URL, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "X-Api-Key": PURSUING_API_KEY,
+    },
+    body: JSON.stringify(payload),
+  });
+
+  const text = await res.text();
+  let json: any = null;
+  try {
+    json = JSON.parse(text);
+  } catch {}
+
+  return {
+    ok: res.ok,
+    status: res.status,
+    json,
+    raw: text,
+  };
+}
+
 function getClientIp(req: NextRequest) {
   const xfwd = req.headers.get("x-forwarded-for");
   if (xfwd) return xfwd.split(",")[0]?.trim();
@@ -58,6 +87,20 @@ function isLikelyTrustedFormUrl(url: string | undefined) {
 function basicAuthHeader(user: string, pass: string) {
   const token = Buffer.from(`${user}:${pass}`).toString("base64");
   return `Basic ${token}`;
+}
+
+function normalizePhone(phone: string | undefined) {
+  return (phone || "").replace(/\D/g, "");
+}
+
+function buildPursuingNarrative(body: Record<string, any>) {
+  const parts = [
+    body.additionalInfo,
+    body.medicalCondition ? `Medical condition: ${body.medicalCondition}` : "",
+    body.exposurePeriod ? `Exposure period: ${body.exposurePeriod}` : "",
+  ].filter(Boolean);
+
+  return parts.join("\n");
 }
 
 /** POST to the certificate URL to retain/claim it in ActiveProspect */
@@ -95,6 +138,7 @@ export async function POST(req: NextRequest) {
     await connectToDatabase();
 
     const tfUrl = isLikelyTrustedFormUrl(rawTfUrl) ? rawTfUrl : "";
+    const pursuingLeadId = String(body.jornayaLeadId || tfUrl || "").trim();
 
     const submission = new ContactForm({
       ...body,
@@ -108,6 +152,7 @@ export async function POST(req: NextRequest) {
 
     let claimSummary: { ok: boolean; status?: number } | null = null;
     let apexSummary: { ok: boolean; status?: number; response?: unknown } | null = null;
+  let pursuingSummary: { ok: boolean; status?: number; response?: unknown } | null = null;
 
     if (tfUrl && TF_API_KEY) {
       try {
@@ -185,6 +230,52 @@ export async function POST(req: NextRequest) {
       }
     }
 
+    try {
+      const pursuingPayload = {
+        LeadID: pursuingLeadId,
+        external_id: submission._id.toString(),
+        first_name: body.firstName || "",
+        last_name: body.lastName || "",
+        email: body.email || undefined,
+        phone: normalizePhone(body.phone) || undefined,
+        case_type: body.caseType || undefined,
+        state: body.state || undefined,
+        zip: body.zip || undefined,
+        address: body.street || undefined,
+        city: body.city || undefined,
+        narrative: buildPursuingNarrative(body) || undefined,
+        website: referer || APEX_WEBSOURCE,
+        extras: {
+          source: "skyeclaimconnect.com",
+          ip_address: ipAddress,
+          user_agent: userAgent,
+          trusted_form_cert_url: tfUrl || undefined,
+          jornaya_lead_id: body.jornayaLeadId || undefined,
+        },
+      };
+
+      const pursuingResponse = await submitLeadToPursuing(pursuingPayload);
+      pursuingSummary = {
+        ok: pursuingResponse.ok,
+        status: pursuingResponse.status,
+        response: pursuingResponse.json ?? pursuingResponse.raw,
+      };
+
+      submission.set({
+        pursuingSubmitted: pursuingResponse.ok,
+        pursuingSubmitStatus: pursuingResponse.status,
+        pursuingSubmitResponse: pursuingResponse.json ?? pursuingResponse.raw,
+      });
+      await submission.save();
+    } catch (e) {
+      console.error("Pursuing submit error:", e);
+      submission.set({
+        pursuingSubmitted: false,
+        pursuingSubmitError: String(e),
+      });
+      await submission.save();
+    }
+
     return NextResponse.json(
       {
         message: "Contact form submitted successfully",
@@ -197,6 +288,10 @@ export async function POST(req: NextRequest) {
         apex: {
           submitted: apexSummary?.ok ?? false,
           status: apexSummary?.status ?? null,
+        },
+        pursuing: {
+          submitted: pursuingSummary?.ok ?? false,
+          status: pursuingSummary?.status ?? null,
         },
         id: submission._id,
       },

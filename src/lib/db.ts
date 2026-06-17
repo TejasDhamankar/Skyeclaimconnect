@@ -63,6 +63,10 @@ const ContactFormSchema = new mongoose.Schema(
     apexSubmitStatus: { type: Number },
     apexSubmitResponse: { type: mongoose.Schema.Types.Mixed },
     apexSubmitError: { type: String },
+    pursuingSubmitted: { type: Boolean },
+    pursuingSubmitStatus: { type: Number },
+    pursuingSubmitResponse: { type: mongoose.Schema.Types.Mixed },
+    pursuingSubmitError: { type: String },
 
     ipAddress: { type: String },
     userAgent: { type: String },
