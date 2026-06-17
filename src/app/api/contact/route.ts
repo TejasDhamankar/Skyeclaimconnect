@@ -10,38 +10,6 @@ const PURSUING_API_KEY_FALLBACK = "Wtjrqo2FIN0JzxJ7P8yPNRKcsfw7TakEGyeSXM2KAJUIK
 const PURSUING_API_KEY = process.env.PURSUING_API_KEY || PURSUING_API_KEY_FALLBACK;
 const PURSUING_LEADS_URL =
   process.env.PURSUING_LEADS_URL || "https://pursuing.com/api/publisher/leads";
-const APEX_DEPO_SUBMIT_URL =
-  process.env.APEX_DEPO_SUBMIT_URL ||
-  "https://apex-services-nbd7z6aa7a-uc.a.run.app/intake/depo/depo/zapier/aldrin/submit";
-const APEX_WEBSOURCE = process.env.APEX_WEBSOURCE || "https://skyeclaimconnect.com";
-const APEX_META_USER_NAME = process.env.APEX_META_USER_NAME || "Skye Claim Connect";
-const APEX_META_USER_EMAIL = process.env.APEX_META_USER_EMAIL || "intake@skyeclaimconnect.com";
-const APEX_META_CAMPAIGN = process.env.APEX_META_CAMPAIGN || "";
-const APEX_META_SELLER = process.env.APEX_META_SELLER || "";
-
-async function submitDepoLeadToApex(payload: Record<string, unknown>) {
-  const res = await fetch(APEX_DEPO_SUBMIT_URL, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
-
-  const text = await res.text();
-  let json: any = null;
-  try {
-    json = JSON.parse(text);
-  } catch {}
-
-  return {
-    ok: res.ok && (json?.status === "Success" || json?.status === "success" || res.status < 300),
-    status: res.status,
-    json,
-    raw: text,
-  };
-}
 
 async function submitLeadToPursuing(payload: Record<string, unknown>) {
   const res = await fetch(PURSUING_LEADS_URL, {
@@ -90,8 +58,41 @@ function basicAuthHeader(user: string, pass: string) {
 }
 
 function normalizePhone(phone: string | undefined) {
-  return (phone || "").replace(/\D/g, "");
+  let cleaned = (phone || "").replace(/\D/g, "");
+  if (cleaned.length === 11 && cleaned.startsWith("1")) {
+    cleaned = cleaned.substring(1);
+  }
+  return cleaned;
 }
+
+const PURSUING_CASE_TYPE_MAPPING: Record<string, number> = {
+  "camp-lejeune": 42,
+  "3m-earplugs": 154,
+  "roundup": 15,
+  "cpap": 20,
+  "tylenol-autism": 38,
+  "hair-relaxer": 22,
+  "zantac": 26,
+  "firefighting-foam": 39,
+  "infant-formula-nec": 46,
+  "exactech": 19,
+  "pfas-water-contamination": 69,
+  "hair-straightener-cancer": 22,
+  "toxic-baby-food": 41,
+  "paraquat": 16,
+  "talcum-powder": 14,
+  "hernia-mesh": 17,
+  "lds-sex-abuse": 132,
+  "depo-provera": 27,
+  "roblox-addiction": 130,
+  "motor-vehicle-accident": 160,
+  "rideshare": 160,
+  "ozempic": 50,
+  "slip-and-fall": 37,
+  "dog-bite": 34,
+  "wtc-exposure": 147,
+  "other": 147,
+};
 
 function buildPursuingNarrative(body: Record<string, any>) {
   const parts = [
@@ -138,7 +139,7 @@ export async function POST(req: NextRequest) {
     await connectToDatabase();
 
     const tfUrl = isLikelyTrustedFormUrl(rawTfUrl) ? rawTfUrl : "";
-    const pursuingLeadId = String(body.jornayaLeadId || tfUrl || "").trim();
+    const pursuingLeadId = String(body.jornayaLeadId || tfUrl || "NO-TOKEN").trim();
 
     const submission = new ContactForm({
       ...body,
@@ -151,8 +152,7 @@ export async function POST(req: NextRequest) {
     await submission.save();
 
     let claimSummary: { ok: boolean; status?: number } | null = null;
-    let apexSummary: { ok: boolean; status?: number; response?: unknown } | null = null;
-  let pursuingSummary: { ok: boolean; status?: number; response?: unknown } | null = null;
+    let pursuingSummary: { ok: boolean; status?: number; response?: unknown } | null = null;
 
     if (tfUrl && TF_API_KEY) {
       try {
@@ -179,101 +179,56 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    if (body.caseType === "depo-provera") {
+    if (body.caseType === "depo-provera" || body.caseType === "talcum-powder") {
       try {
-        const apexPayload = {
-          firstName: body.firstName,
-          lastName: body.lastName,
-          email: body.email,
-          phone: body.phone,
-          street: body.street || "",
-          city: body.city || "",
-          state: body.state || "",
-          zip: body.zip || "",
-          notes: body.additionalInfo || "",
-          meta: {
-            id: submission._id.toString(),
-            timestamp: new Date().toISOString(),
-            createDt: submission.createdAt?.toISOString?.() || new Date().toISOString(),
-            updateDt: new Date().toISOString(),
-            user: {
-              name: APEX_META_USER_NAME,
-              email: APEX_META_USER_EMAIL,
-            },
-            campaign: APEX_META_CAMPAIGN || undefined,
-            seller: APEX_META_SELLER || undefined,
-            claimant: `${body.firstName || ""} ${body.lastName || ""}`.trim(),
-            websource: referer || APEX_WEBSOURCE,
+        const pursuingCaseTypeId = PURSUING_CASE_TYPE_MAPPING[body.caseType] || undefined;
+        const normalizedPhone = normalizePhone(body.phone);
+
+        const pursuingPayload = {
+          LeadID: pursuingLeadId,
+          external_id: submission._id.toString(),
+          first_name: body.firstName || "",
+          last_name: body.lastName || "",
+          email: body.email || undefined,
+          phone: normalizedPhone || undefined,
+          case_type_id: pursuingCaseTypeId,
+          case_type: !pursuingCaseTypeId ? body.caseType : undefined,
+          state: body.state || undefined,
+          zip: body.zip || undefined,
+          address: body.street || undefined,
+          city: body.city || undefined,
+          narrative: buildPursuingNarrative(body) || undefined,
+          website: referer || "https://skyeclaimconnect.com",
+          extras: {
+            source: "skyeclaimconnect.com",
+            ip_address: ipAddress,
+            user_agent: userAgent,
+            trusted_form_cert_url: tfUrl || undefined,
+            jornaya_lead_id: body.jornayaLeadId || undefined,
           },
         };
 
-        const apexResponse = await submitDepoLeadToApex(apexPayload);
-        apexSummary = {
-          ok: apexResponse.ok,
-          status: apexResponse.status,
-          response: apexResponse.json ?? apexResponse.raw,
+        const pursuingResponse = await submitLeadToPursuing(pursuingPayload);
+        pursuingSummary = {
+          ok: pursuingResponse.ok,
+          status: pursuingResponse.status,
+          response: pursuingResponse.json ?? pursuingResponse.raw,
         };
 
         submission.set({
-          apexSubmitted: apexResponse.ok,
-          apexSubmitStatus: apexResponse.status,
-          apexSubmitResponse: apexResponse.json ?? apexResponse.raw,
+          pursuingSubmitted: pursuingResponse.ok,
+          pursuingSubmitStatus: pursuingResponse.status,
+          pursuingSubmitResponse: pursuingResponse.json ?? pursuingResponse.raw,
         });
         await submission.save();
       } catch (e) {
-        console.error("APEX submit error:", e);
+        console.error("Pursuing submit error:", e);
         submission.set({
-          apexSubmitted: false,
-          apexSubmitError: String(e),
+          pursuingSubmitted: false,
+          pursuingSubmitError: String(e),
         });
         await submission.save();
       }
-    }
-
-    try {
-      const pursuingPayload = {
-        LeadID: pursuingLeadId,
-        external_id: submission._id.toString(),
-        first_name: body.firstName || "",
-        last_name: body.lastName || "",
-        email: body.email || undefined,
-        phone: normalizePhone(body.phone) || undefined,
-        case_type: body.caseType || undefined,
-        state: body.state || undefined,
-        zip: body.zip || undefined,
-        address: body.street || undefined,
-        city: body.city || undefined,
-        narrative: buildPursuingNarrative(body) || undefined,
-        website: referer || APEX_WEBSOURCE,
-        extras: {
-          source: "skyeclaimconnect.com",
-          ip_address: ipAddress,
-          user_agent: userAgent,
-          trusted_form_cert_url: tfUrl || undefined,
-          jornaya_lead_id: body.jornayaLeadId || undefined,
-        },
-      };
-
-      const pursuingResponse = await submitLeadToPursuing(pursuingPayload);
-      pursuingSummary = {
-        ok: pursuingResponse.ok,
-        status: pursuingResponse.status,
-        response: pursuingResponse.json ?? pursuingResponse.raw,
-      };
-
-      submission.set({
-        pursuingSubmitted: pursuingResponse.ok,
-        pursuingSubmitStatus: pursuingResponse.status,
-        pursuingSubmitResponse: pursuingResponse.json ?? pursuingResponse.raw,
-      });
-      await submission.save();
-    } catch (e) {
-      console.error("Pursuing submit error:", e);
-      submission.set({
-        pursuingSubmitted: false,
-        pursuingSubmitError: String(e),
-      });
-      await submission.save();
     }
 
     return NextResponse.json(
@@ -284,10 +239,6 @@ export async function POST(req: NextRequest) {
           providedUrl: Boolean(tfUrl),
           claimed: claimSummary?.ok ?? false,
           status: claimSummary?.status ?? null,
-        },
-        apex: {
-          submitted: apexSummary?.ok ?? false,
-          status: apexSummary?.status ?? null,
         },
         pursuing: {
           submitted: pursuingSummary?.ok ?? false,
