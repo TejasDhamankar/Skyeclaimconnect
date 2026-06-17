@@ -68,11 +68,16 @@ const CaseEvaluation = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formStatus, setFormStatus] = useState<FormStatus>({ type: "", message: "" });
   const [isTrustedFormLoaded, setIsTrustedFormLoaded] = useState(false);
+  const [zipError, setZipError] = useState("");
   const formRef = useRef<HTMLFormElement | null>(null);
   const tfUrlRef = useRef<string>("");
   const scriptLoadedRef = useRef(false);
 
   const caseTypes = getAllCaseTypes();
+
+  const isZipValid = (zip: string) => {
+    return /^\d{5}$/.test(zip);
+  };
 
   // Load TrustedForm SDK with the CORRECT script from their documentation
   useEffect(() => {
@@ -155,7 +160,19 @@ const CaseEvaluation = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    
+    if (name === "zip") {
+      const cleaned = value.replace(/\D/g, "").substring(0, 5);
+      setFormData((prev) => ({ ...prev, [name]: cleaned }));
+      
+      if (cleaned.length > 0 && cleaned.length < 5) {
+        setZipError("Zip code must be exactly 5 digits");
+      } else {
+        setZipError("");
+      }
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleSelectChange = (field: string, value: string) => {
@@ -421,16 +438,20 @@ const CaseEvaluation = () => {
 
                       <div>
                         <Label htmlFor="zip" className="flex items-center text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">
-                          Zip
+                          Zip*
                         </Label>
                         <Input
                           id="zip"
                           name="zip"
-                          placeholder="Zip code"
+                          placeholder="5-digit zip code"
                           value={formData.zip || ""}
                           onChange={handleInputChange}
-                          className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                          className={`mt-2 h-12 rounded-none border ${zipError ? 'border-red-500' : 'border-[#d8cdbd]'} bg-white focus:border-primary`}
+                          required
                         />
+                        {zipError && (
+                          <p className="mt-1 text-[10px] text-red-500 font-bold uppercase tracking-wider">{zipError}</p>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -561,8 +582,8 @@ const CaseEvaluation = () => {
                     <Button
                       type="submit"
                       name="submit"
-                      className="h-14 w-full rounded-none border border-[rgba(194,148,90,0.8)] bg-primary px-8 text-[12px] font-medium uppercase tracking-[0.28em] text-white hover:bg-[var(--color-accent)] hover:text-primary sm:w-auto"
-                      disabled={isSubmitting}
+                      className="h-14 w-full rounded-none border border-[rgba(194,148,90,0.8)] bg-primary px-8 text-[12px] font-medium uppercase tracking-[0.28em] text-white hover:bg-[var(--color-accent)] hover:text-primary sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                      disabled={isSubmitting || !isZipValid(formData.zip || "")}
                       data-tf-element-role="submit"
                     >
                       {isSubmitting ? (

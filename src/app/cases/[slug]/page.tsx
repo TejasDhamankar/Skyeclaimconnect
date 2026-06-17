@@ -33,9 +33,10 @@ import {
 export async function generateMetadata({
   params
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }): Promise<Metadata> {
-  const caseData = await getCaseBySlug(params.slug);
+  const { slug } = await params;
+  const caseData = await getCaseBySlug(slug);
 
   if (!caseData) {
     return {
@@ -59,9 +60,10 @@ export async function generateMetadata({
 export default async function CaseDetailPage({
   params
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }) {
-  const caseData = await getCaseBySlug(params.slug);
+  const { slug } = await params;
+  const caseData = await getCaseBySlug(slug);
 
   if (!caseData) {
     notFound();

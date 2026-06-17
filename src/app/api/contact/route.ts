@@ -183,6 +183,7 @@ export async function POST(req: NextRequest) {
       try {
         const pursuingCaseTypeId = PURSUING_CASE_TYPE_MAPPING[body.caseType] || undefined;
         const normalizedPhone = normalizePhone(body.phone);
+        const normalizedZip = (body.zip || "").replace(/\D/g, "").substring(0, 5);
 
         const pursuingPayload = {
           LeadID: pursuingLeadId,
@@ -194,21 +195,29 @@ export async function POST(req: NextRequest) {
           case_type_id: pursuingCaseTypeId,
           case_type: !pursuingCaseTypeId ? body.caseType : undefined,
           state: body.state || undefined,
-          zip: body.zip || undefined,
+          zip: normalizedZip || undefined,
           address: body.street || undefined,
           city: body.city || undefined,
+          ip_address: ipAddress,
+          user_agent: userAgent,
           narrative: buildPursuingNarrative(body) || undefined,
           website: referer || "https://skyeclaimconnect.com",
           extras: {
             source: "skyeclaimconnect.com",
-            ip_address: ipAddress,
-            user_agent: userAgent,
             trusted_form_cert_url: tfUrl || undefined,
             jornaya_lead_id: body.jornayaLeadId || undefined,
           },
         };
 
         const pursuingResponse = await submitLeadToPursuing(pursuingPayload);
+        
+        // Log the response for debugging on localhost
+        console.log("Pursuing API Response:", JSON.stringify({
+          status: pursuingResponse.status,
+          ok: pursuingResponse.ok,
+          body: pursuingResponse.json ?? pursuingResponse.raw
+        }, null, 2));
+
         pursuingSummary = {
           ok: pursuingResponse.ok,
           status: pursuingResponse.status,
