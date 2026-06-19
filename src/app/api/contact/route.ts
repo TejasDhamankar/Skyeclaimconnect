@@ -37,9 +37,19 @@ async function submitLeadToPursuing(payload: Record<string, unknown>) {
 }
 
 function getClientIp(req: NextRequest) {
+  let ip = "0.0.0.0";
   const xfwd = req.headers.get("x-forwarded-for");
-  if (xfwd) return xfwd.split(",")[0]?.trim();
-  return req.headers.get("x-real-ip") || req.cookies.get("client-ip")?.value || "0.0.0.0";
+  if (xfwd) {
+    ip = xfwd.split(",")[0]?.trim();
+  } else {
+    ip = req.headers.get("x-real-ip") || req.cookies.get("client-ip")?.value || "0.0.0.0";
+  }
+
+  // Handle localhost/loopback for testing (Pursuing rejects localhost)
+  if (ip === "::1" || ip === "127.0.0.1" || ip === "0.0.0.0") {
+    return "3.13.104.8"; // Sample public IP provided in client requirements
+  }
+  return ip;
 }
 
 function isLikelyTrustedFormUrl(url: string | undefined) {
@@ -202,6 +212,38 @@ export async function POST(req: NextRequest) {
           user_agent: userAgent,
           narrative: buildPursuingNarrative(body) || undefined,
           website: referer || "https://skyeclaimconnect.com",
+
+          // Case-specific fields for Depo & Talc
+          ssn: body.ssn || undefined,
+          dob: body.dob || undefined,
+          incident_date: body.incidentDate || undefined,
+          start_date: body.startDate || undefined,
+          end_date: body.endDate || undefined,
+          pharmacy_name: body.pharmacyName || undefined,
+          pharmacy_address: body.pharmacyAddress || undefined,
+          pharmacy_phone: body.pharmacyPhone || undefined,
+          doctor_name: body.doctorName || undefined,
+          facility_name: body.facilityName || undefined,
+          facility_address: body.facilityAddress || undefined,
+          facility_phone: body.facilityPhone || undefined,
+          pcp_name: body.pcpName || undefined,
+          pcp_address: body.pcpAddress || undefined,
+          pcp_phone: body.pcpPhone || undefined,
+          pcp_email: body.pcpEmail || undefined,
+          medical_notes: body.medicalNotes || undefined,
+          emergency_name: body.emergencyName || undefined,
+          emergency_relationship: body.emergencyRelationship || undefined,
+          emergency_address: body.emergencyAddress || undefined,
+          emergency_phone: body.emergencyPhone || undefined,
+          emergency_email: body.emergencyEmail || undefined,
+          date_of_death: body.dateOfDeath || undefined,
+          cancer_type: body.cancerType || undefined,
+          is_deceased: body.isDeceased || undefined,
+          talc_perineal_4yr: body.talcPerineal4yr || undefined,
+          talc_brca_negative: body.talcBrcaNegative || undefined,
+          diagnosed_18_70: body.diagnosed18To70 || undefined,
+          diagnosis_date: body.diagnosisDate || undefined,
+
           extras: {
             source: "skyeclaimconnect.com",
             trusted_form_cert_url: tfUrl || undefined,

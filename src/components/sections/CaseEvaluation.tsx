@@ -57,6 +57,20 @@ const CaseEvaluation = () => {
     exposurePeriod: "",
     medicalCondition: "",
     additionalInfo: "",
+    ssn: "",
+    dob: "",
+    incidentDate: "",
+    cancerType: "",
+    isDeceased: "",
+    talcPerineal4yr: "",
+    talcBrcaNegative: "",
+    diagnosed18To70: "",
+    diagnosisDate: "",
+    startDate: "",
+    endDate: "",
+    pharmacyName: "",
+    doctorName: "",
+    facilityName: "",
     agreeToTerms: false,
     agreeToQualification: false,
     agreeToTermsAndContact: false,
@@ -242,6 +256,20 @@ const CaseEvaluation = () => {
         exposurePeriod: "",
         medicalCondition: "",
         additionalInfo: "",
+        ssn: "",
+        dob: "",
+        incidentDate: "",
+        cancerType: "",
+        isDeceased: "",
+        talcPerineal4yr: "",
+        talcBrcaNegative: "",
+        diagnosed18To70: "",
+        diagnosisDate: "",
+        startDate: "",
+        endDate: "",
+        pharmacyName: "",
+        doctorName: "",
+        facilityName: "",
         agreeToTerms: false,
         agreeToQualification: false,
         agreeToTermsAndContact: false,
@@ -498,6 +526,123 @@ const CaseEvaluation = () => {
                       </div>
                     </div>
                   </div>
+
+                  {/* Case-Specific Additional Questions */}
+                  {(formData.caseType === "depo-provera" || formData.caseType === "talcum-powder") && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      className="space-y-6 border-l-4 border-[var(--color-accent)] bg-[#fdfaf5] p-6"
+                    >
+                      <h3 className="font-serif text-2xl text-primary">Additional Case Details</h3>
+                      
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                          <Label htmlFor="ssn" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Social Security Number*</Label>
+                          <Input
+                            id="ssn"
+                            name="ssn"
+                            placeholder="e.g. 000-00-0000"
+                            value={formData.ssn}
+                            onChange={handleInputChange}
+                            className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                            required
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="dob" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Date of Birth*</Label>
+                          <Input
+                            id="dob"
+                            name="dob"
+                            type="date"
+                            value={formData.dob}
+                            onChange={handleInputChange}
+                            className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      {formData.caseType === "depo-provera" && (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                          <div>
+                            <Label htmlFor="startDate" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Use Start Date</Label>
+                            <Input
+                              id="startDate"
+                              name="startDate"
+                              type="date"
+                              value={formData.startDate}
+                              onChange={handleInputChange}
+                              className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="endDate" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Use End Date</Label>
+                            <Input
+                              id="endDate"
+                              name="endDate"
+                              type="date"
+                              value={formData.endDate}
+                              onChange={handleInputChange}
+                              className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                            />
+                          </div>
+                          <div className="sm:col-span-2">
+                            <Label htmlFor="pharmacyName" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Pharmacy Name</Label>
+                            <Input
+                              id="pharmacyName"
+                              name="pharmacyName"
+                              placeholder="Name of pharmacy where Depo was purchased"
+                              value={formData.pharmacyName}
+                              onChange={handleInputChange}
+                              className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                            />
+                          </div>
+                        </div>
+                      )}
+
+                      {formData.caseType === "talcum-powder" && (
+                        <div className="space-y-6">
+                          <div>
+                            <Label htmlFor="cancerType" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Type of Cancer</Label>
+                            <Input
+                              id="cancerType"
+                              name="cancerType"
+                              placeholder="e.g. Ovarian, Mesothelioma"
+                              value={formData.cancerType}
+                              onChange={handleInputChange}
+                              className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                            />
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                              <Label htmlFor="diagnosisDate" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Diagnosis Date</Label>
+                              <Input
+                                id="diagnosisDate"
+                                name="diagnosisDate"
+                                type="date"
+                                value={formData.diagnosisDate}
+                                onChange={handleInputChange}
+                                className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                              />
+                            </div>
+                            <div>
+                              <Label className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Is the person deceased?</Label>
+                              <Select onValueChange={(v) => handleSelectChange("isDeceased", v)} value={formData.isDeceased}>
+                                <SelectTrigger className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary">
+                                  <SelectValue placeholder="Select..." />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="Yes">Yes</SelectItem>
+                                  <SelectItem value="No">No</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </motion.div>
+                  )}
 
                   {/* Required Agreements */}
                   <div className="space-y-4 border border-[#dfd3c4] bg-[#f8f1e6] p-6">
