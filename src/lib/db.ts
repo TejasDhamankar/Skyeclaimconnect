@@ -57,6 +57,7 @@ const ContactFormSchema = new mongoose.Schema(
     incidentDate: { type: String },
     cancerType: { type: String },
     isDeceased: { type: String },
+    hasSsn: { type: String },
     talcPerineal4yr: { type: String },
     talcBrcaNegative: { type: String },
     diagnosed18To70: { type: String },

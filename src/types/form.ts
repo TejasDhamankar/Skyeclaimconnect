@@ -23,6 +23,7 @@ export interface CaseEvaluationFormData {
   incidentDate?: string;
   cancerType?: string;
   isDeceased?: string;
+  hasSsn?: string;
   talcPerineal4yr?: string;
   talcBrcaNegative?: string;
   diagnosed18To70?: string;

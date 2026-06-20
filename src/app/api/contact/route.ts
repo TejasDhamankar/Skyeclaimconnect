@@ -37,19 +37,39 @@ async function submitLeadToPursuing(payload: Record<string, unknown>) {
 }
 
 function getClientIp(req: NextRequest) {
-  let ip = "0.0.0.0";
-  const xfwd = req.headers.get("x-forwarded-for");
-  if (xfwd) {
-    ip = xfwd.split(",")[0]?.trim();
-  } else {
-    ip = req.headers.get("x-real-ip") || req.cookies.get("client-ip")?.value || "0.0.0.0";
-  }
+  const candidates = [
+    ...(req.headers.get("x-forwarded-for") || "").split(","),
+    req.headers.get("x-real-ip"),
+    req.headers.get("cf-connecting-ip"),
+    req.headers.get("true-client-ip"),
+    req.cookies.get("client-ip")?.value,
+  ]
+    .map((ip) => normalizeIp(ip || ""))
+    .filter(Boolean);
 
-  // Handle localhost/loopback for testing (Pursuing rejects localhost)
-  if (ip === "::1" || ip === "127.0.0.1" || ip === "0.0.0.0") {
-    return "3.13.104.8"; // Sample public IP provided in client requirements
-  }
-  return ip;
+  const publicIp = candidates.find((ip) => !isPrivateOrLoopbackIp(ip));
+  if (publicIp) return publicIp;
+
+  // Local dev/test submissions need a public-looking IP because Pursuing rejects loopback values.
+  if (process.env.NODE_ENV !== "production") return "3.13.104.8";
+
+  return candidates[0] || "";
+}
+
+function normalizeIp(ip: string) {
+  return ip.trim().replace(/^::ffff:/, "");
+}
+
+function isPrivateOrLoopbackIp(ip: string) {
+  if (!ip) return true;
+  if (ip === "::1" || ip === "127.0.0.1" || ip === "0.0.0.0") return true;
+  if (ip.startsWith("10.")) return true;
+  if (ip.startsWith("192.168.")) return true;
+  if (/^172\.(1[6-9]|2\d|3[01])\./.test(ip)) return true;
+  if (/^169\.254\./.test(ip)) return true;
+  if (/^(fc|fd)/i.test(ip)) return true;
+  if (/^fe80:/i.test(ip)) return true;
+  return false;
 }
 
 function isLikelyTrustedFormUrl(url: string | undefined) {
@@ -214,7 +234,10 @@ export async function POST(req: NextRequest) {
           website: referer || "https://skyeclaimconnect.com",
 
           // Case-specific fields for Depo & Talc
-          ssn: body.ssn || undefined,
+          ssn:
+            body.caseType === "talcum-powder"
+              ? body.hasSsn || undefined
+              : body.ssn || undefined,
           dob: body.dob || undefined,
           incident_date: body.incidentDate || undefined,
           start_date: body.startDate || undefined,
@@ -248,6 +271,11 @@ export async function POST(req: NextRequest) {
             source: "skyeclaimconnect.com",
             trusted_form_cert_url: tfUrl || undefined,
             jornaya_lead_id: body.jornayaLeadId || undefined,
+            consent_to_qualification: Boolean(body.agreeToQualification),
+            consent_to_terms_and_contact: Boolean(body.agreeToTermsAndContact),
+            consent_to_disclaimer: Boolean(body.agreeToDisclaimer),
+            user_agent: userAgent,
+            referer: referer || undefined,
           },
         };
 
@@ -311,4 +339,3 @@ export async function POST(req: NextRequest) {
     );
   }
 }
-

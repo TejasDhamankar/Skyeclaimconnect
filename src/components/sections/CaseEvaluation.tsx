@@ -62,6 +62,7 @@ const CaseEvaluation = () => {
     incidentDate: "",
     cancerType: "",
     isDeceased: "",
+    hasSsn: "",
     talcPerineal4yr: "",
     talcBrcaNegative: "",
     diagnosed18To70: "",
@@ -69,8 +70,23 @@ const CaseEvaluation = () => {
     startDate: "",
     endDate: "",
     pharmacyName: "",
+    pharmacyAddress: "",
+    pharmacyPhone: "",
     doctorName: "",
     facilityName: "",
+    facilityAddress: "",
+    facilityPhone: "",
+    pcpName: "",
+    pcpAddress: "",
+    pcpPhone: "",
+    pcpEmail: "",
+    medicalNotes: "",
+    emergencyName: "",
+    emergencyRelationship: "",
+    emergencyAddress: "",
+    emergencyPhone: "",
+    emergencyEmail: "",
+    dateOfDeath: "",
     agreeToTerms: false,
     agreeToQualification: false,
     agreeToTermsAndContact: false,
@@ -184,6 +200,8 @@ const CaseEvaluation = () => {
       } else {
         setZipError("");
       }
+    } else if (name === "state") {
+      setFormData((prev) => ({ ...prev, [name]: value.replace(/[^a-z]/gi, "").substring(0, 2).toUpperCase() }));
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }));
     }
@@ -197,10 +215,68 @@ const CaseEvaluation = () => {
     setFormData((prev) => ({ ...prev, [field]: checked }));
   };
 
+  const getMissingPursuingFields = () => {
+    const requiredBaseFields: Array<[keyof ExtendedFormData, string]> = [
+      ["firstName", "First Name"],
+      ["lastName", "Last Name"],
+      ["email", "Email Address"],
+      ["phone", "Phone Number"],
+      ["state", "State"],
+      ["zip", "Zip"],
+    ];
+
+    const depoFields: Array<[keyof ExtendedFormData, string]> = [
+      ["ssn", "Social Security Number"],
+      ["dob", "Date of Birth"],
+      ["startDate", "Use Start Date"],
+      ["endDate", "Use End Date"],
+      ["pharmacyName", "Pharmacy Name"],
+      ["pharmacyAddress", "Pharmacy Address"],
+      ["pharmacyPhone", "Pharmacy Phone"],
+      ["doctorName", "Doctor Name"],
+      ["facilityName", "Facility Name"],
+      ["facilityAddress", "Facility Address"],
+      ["facilityPhone", "Facility Phone"],
+      ["pcpName", "Primary Care Provider Name"],
+      ["pcpAddress", "Primary Care Provider Address"],
+      ["pcpPhone", "Primary Care Provider Phone"],
+      ["pcpEmail", "Primary Care Provider Email"],
+      ["medicalNotes", "Medical Notes"],
+      ["emergencyName", "Emergency Contact Name"],
+      ["emergencyRelationship", "Emergency Contact Relationship"],
+      ["emergencyAddress", "Emergency Contact Address"],
+      ["emergencyPhone", "Emergency Contact Phone"],
+      ["emergencyEmail", "Emergency Contact Email"],
+      ["dateOfDeath", "Date of Death"],
+      ["cancerType", "Cancer Type"],
+    ];
+
+    const talcFields: Array<[keyof ExtendedFormData, string]> = [
+      ["cancerType", "Cancer Type"],
+      ["isDeceased", "Is the person deceased?"],
+      ["talcPerineal4yr", "Used talcum powder perineally for 4+ years"],
+      ["talcBrcaNegative", "BRCA negative"],
+      ["diagnosed18To70", "Diagnosed between ages 18 and 70"],
+      ["diagnosisDate", "Diagnosis Date"],
+      ["hasSsn", "Has Social Security Number"],
+    ];
+
+    const requiredFields =
+      formData.caseType === "depo-provera"
+        ? [...requiredBaseFields, ...depoFields]
+        : formData.caseType === "talcum-powder"
+          ? [...requiredBaseFields, ...talcFields]
+          : [];
+
+    return requiredFields
+      .filter(([field]) => !String(formData[field] || "").trim())
+      .map(([, label]) => label);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone) {
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || !formData.caseType) {
       setFormStatus({ type: "error", message: "Please fill in all required fields." });
       return;
     }
@@ -209,6 +285,15 @@ const CaseEvaluation = () => {
       setFormStatus({
         type: "error",
         message: "You must agree to all terms and conditions to proceed.",
+      });
+      return;
+    }
+
+    const missingPursuingFields = getMissingPursuingFields();
+    if (missingPursuingFields.length > 0) {
+      setFormStatus({
+        type: "error",
+        message: `Please complete the required campaign fields: ${missingPursuingFields.join(", ")}.`,
       });
       return;
     }
@@ -261,6 +346,7 @@ const CaseEvaluation = () => {
         incidentDate: "",
         cancerType: "",
         isDeceased: "",
+        hasSsn: "",
         talcPerineal4yr: "",
         talcBrcaNegative: "",
         diagnosed18To70: "",
@@ -268,8 +354,23 @@ const CaseEvaluation = () => {
         startDate: "",
         endDate: "",
         pharmacyName: "",
+        pharmacyAddress: "",
+        pharmacyPhone: "",
         doctorName: "",
         facilityName: "",
+        facilityAddress: "",
+        facilityPhone: "",
+        pcpName: "",
+        pcpAddress: "",
+        pcpPhone: "",
+        pcpEmail: "",
+        medicalNotes: "",
+        emergencyName: "",
+        emergencyRelationship: "",
+        emergencyAddress: "",
+        emergencyPhone: "",
+        emergencyEmail: "",
+        dateOfDeath: "",
         agreeToTerms: false,
         agreeToQualification: false,
         agreeToTermsAndContact: false,
@@ -452,15 +553,17 @@ const CaseEvaluation = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
                       <div>
                         <Label htmlFor="state" className="flex items-center text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">
-                          State
+                          State*
                         </Label>
                         <Input
                           id="state"
                           name="state"
-                          placeholder="State"
+                          placeholder="2-letter state"
                           value={formData.state || ""}
                           onChange={handleInputChange}
                           className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                          maxLength={2}
+                          required
                         />
                       </div>
 
@@ -535,38 +638,35 @@ const CaseEvaluation = () => {
                       className="space-y-6 border-l-4 border-[var(--color-accent)] bg-[#fdfaf5] p-6"
                     >
                       <h3 className="font-serif text-2xl text-primary">Additional Case Details</h3>
-                      
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div>
-                          <Label htmlFor="ssn" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Social Security Number*</Label>
-                          <Input
-                            id="ssn"
-                            name="ssn"
-                            placeholder="e.g. 000-00-0000"
-                            value={formData.ssn}
-                            onChange={handleInputChange}
-                            className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
-                            required
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor="dob" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Date of Birth*</Label>
-                          <Input
-                            id="dob"
-                            name="dob"
-                            type="date"
-                            value={formData.dob}
-                            onChange={handleInputChange}
-                            className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
-                            required
-                          />
-                        </div>
-                      </div>
 
                       {formData.caseType === "depo-provera" && (
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                           <div>
-                            <Label htmlFor="startDate" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Use Start Date</Label>
+                            <Label htmlFor="ssn" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Social Security Number*</Label>
+                            <Input
+                              id="ssn"
+                              name="ssn"
+                              placeholder="e.g. 000-00-0000"
+                              value={formData.ssn}
+                              onChange={handleInputChange}
+                              className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="dob" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Date of Birth*</Label>
+                            <Input
+                              id="dob"
+                              name="dob"
+                              type="date"
+                              value={formData.dob}
+                              onChange={handleInputChange}
+                              className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="startDate" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Use Start Date*</Label>
                             <Input
                               id="startDate"
                               name="startDate"
@@ -574,10 +674,11 @@ const CaseEvaluation = () => {
                               value={formData.startDate}
                               onChange={handleInputChange}
                               className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                              required
                             />
                           </div>
                           <div>
-                            <Label htmlFor="endDate" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Use End Date</Label>
+                            <Label htmlFor="endDate" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Use End Date*</Label>
                             <Input
                               id="endDate"
                               name="endDate"
@@ -585,10 +686,11 @@ const CaseEvaluation = () => {
                               value={formData.endDate}
                               onChange={handleInputChange}
                               className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                              required
                             />
                           </div>
-                          <div className="sm:col-span-2">
-                            <Label htmlFor="pharmacyName" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Pharmacy Name</Label>
+                          <div>
+                            <Label htmlFor="pharmacyName" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Pharmacy Name*</Label>
                             <Input
                               id="pharmacyName"
                               name="pharmacyName"
@@ -596,6 +698,225 @@ const CaseEvaluation = () => {
                               value={formData.pharmacyName}
                               onChange={handleInputChange}
                               className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="pharmacyPhone" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Pharmacy Phone*</Label>
+                            <Input
+                              id="pharmacyPhone"
+                              name="pharmacyPhone"
+                              placeholder="Pharmacy phone number"
+                              value={formData.pharmacyPhone || ""}
+                              onChange={handleInputChange}
+                              className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                              required
+                            />
+                          </div>
+                          <div className="sm:col-span-2">
+                            <Label htmlFor="pharmacyAddress" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Pharmacy Address*</Label>
+                            <Input
+                              id="pharmacyAddress"
+                              name="pharmacyAddress"
+                              placeholder="Pharmacy street address"
+                              value={formData.pharmacyAddress || ""}
+                              onChange={handleInputChange}
+                              className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="doctorName" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Doctor Name*</Label>
+                            <Input
+                              id="doctorName"
+                              name="doctorName"
+                              placeholder="Prescribing doctor"
+                              value={formData.doctorName || ""}
+                              onChange={handleInputChange}
+                              className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="facilityName" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Facility Name*</Label>
+                            <Input
+                              id="facilityName"
+                              name="facilityName"
+                              placeholder="Treating facility"
+                              value={formData.facilityName || ""}
+                              onChange={handleInputChange}
+                              className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                              required
+                            />
+                          </div>
+                          <div className="sm:col-span-2">
+                            <Label htmlFor="facilityAddress" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Facility Address*</Label>
+                            <Input
+                              id="facilityAddress"
+                              name="facilityAddress"
+                              placeholder="Facility address"
+                              value={formData.facilityAddress || ""}
+                              onChange={handleInputChange}
+                              className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="facilityPhone" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Facility Phone*</Label>
+                            <Input
+                              id="facilityPhone"
+                              name="facilityPhone"
+                              placeholder="Facility phone number"
+                              value={formData.facilityPhone || ""}
+                              onChange={handleInputChange}
+                              className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="pcpName" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Primary Care Provider Name*</Label>
+                            <Input
+                              id="pcpName"
+                              name="pcpName"
+                              placeholder="PCP name"
+                              value={formData.pcpName || ""}
+                              onChange={handleInputChange}
+                              className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                              required
+                            />
+                          </div>
+                          <div className="sm:col-span-2">
+                            <Label htmlFor="pcpAddress" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Primary Care Provider Address*</Label>
+                            <Input
+                              id="pcpAddress"
+                              name="pcpAddress"
+                              placeholder="PCP address"
+                              value={formData.pcpAddress || ""}
+                              onChange={handleInputChange}
+                              className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="pcpPhone" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Primary Care Provider Phone*</Label>
+                            <Input
+                              id="pcpPhone"
+                              name="pcpPhone"
+                              placeholder="PCP phone number"
+                              value={formData.pcpPhone || ""}
+                              onChange={handleInputChange}
+                              className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="pcpEmail" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Primary Care Provider Email*</Label>
+                            <Input
+                              id="pcpEmail"
+                              name="pcpEmail"
+                              type="email"
+                              placeholder="PCP email address"
+                              value={formData.pcpEmail || ""}
+                              onChange={handleInputChange}
+                              className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                              required
+                            />
+                          </div>
+                          <div className="sm:col-span-2">
+                            <Label htmlFor="medicalNotes" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Medical Notes*</Label>
+                            <Textarea
+                              id="medicalNotes"
+                              name="medicalNotes"
+                              placeholder="Relevant diagnosis, treatment, and Depo-Provera details"
+                              value={formData.medicalNotes || ""}
+                              onChange={handleInputChange}
+                              className="mt-2 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="emergencyName" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Emergency Contact Name*</Label>
+                            <Input
+                              id="emergencyName"
+                              name="emergencyName"
+                              placeholder="Emergency contact"
+                              value={formData.emergencyName || ""}
+                              onChange={handleInputChange}
+                              className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="emergencyRelationship" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Emergency Relationship*</Label>
+                            <Input
+                              id="emergencyRelationship"
+                              name="emergencyRelationship"
+                              placeholder="Relationship"
+                              value={formData.emergencyRelationship || ""}
+                              onChange={handleInputChange}
+                              className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                              required
+                            />
+                          </div>
+                          <div className="sm:col-span-2">
+                            <Label htmlFor="emergencyAddress" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Emergency Contact Address*</Label>
+                            <Input
+                              id="emergencyAddress"
+                              name="emergencyAddress"
+                              placeholder="Emergency contact address"
+                              value={formData.emergencyAddress || ""}
+                              onChange={handleInputChange}
+                              className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="emergencyPhone" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Emergency Contact Phone*</Label>
+                            <Input
+                              id="emergencyPhone"
+                              name="emergencyPhone"
+                              placeholder="Emergency contact phone"
+                              value={formData.emergencyPhone || ""}
+                              onChange={handleInputChange}
+                              className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="emergencyEmail" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Emergency Contact Email*</Label>
+                            <Input
+                              id="emergencyEmail"
+                              name="emergencyEmail"
+                              type="email"
+                              placeholder="Emergency contact email"
+                              value={formData.emergencyEmail || ""}
+                              onChange={handleInputChange}
+                              className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="dateOfDeath" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Date of Death*</Label>
+                            <Input
+                              id="dateOfDeath"
+                              name="dateOfDeath"
+                              type="date"
+                              value={formData.dateOfDeath || ""}
+                              onChange={handleInputChange}
+                              className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="cancerType" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Cancer Type*</Label>
+                            <Input
+                              id="cancerType"
+                              name="cancerType"
+                              placeholder="Cancer type"
+                              value={formData.cancerType || ""}
+                              onChange={handleInputChange}
+                              className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                              required
                             />
                           </div>
                         </div>
@@ -604,7 +925,7 @@ const CaseEvaluation = () => {
                       {formData.caseType === "talcum-powder" && (
                         <div className="space-y-6">
                           <div>
-                            <Label htmlFor="cancerType" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Type of Cancer</Label>
+                            <Label htmlFor="cancerType" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Type of Cancer*</Label>
                             <Input
                               id="cancerType"
                               name="cancerType"
@@ -612,11 +933,12 @@ const CaseEvaluation = () => {
                               value={formData.cancerType}
                               onChange={handleInputChange}
                               className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                              required
                             />
                           </div>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
-                              <Label htmlFor="diagnosisDate" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Diagnosis Date</Label>
+                              <Label htmlFor="diagnosisDate" className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Diagnosis Date*</Label>
                               <Input
                                 id="diagnosisDate"
                                 name="diagnosisDate"
@@ -624,11 +946,60 @@ const CaseEvaluation = () => {
                                 value={formData.diagnosisDate}
                                 onChange={handleInputChange}
                                 className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary"
+                                required
                               />
                             </div>
                             <div>
-                              <Label className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Is the person deceased?</Label>
+                              <Label className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Is the person deceased?*</Label>
                               <Select onValueChange={(v) => handleSelectChange("isDeceased", v)} value={formData.isDeceased}>
+                                <SelectTrigger className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary">
+                                  <SelectValue placeholder="Select..." />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="Yes">Yes</SelectItem>
+                                  <SelectItem value="No">No</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                            <div>
+                              <Label className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Used talcum powder perineally for 4+ years?*</Label>
+                              <Select onValueChange={(v) => handleSelectChange("talcPerineal4yr", v)} value={formData.talcPerineal4yr}>
+                                <SelectTrigger className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary">
+                                  <SelectValue placeholder="Select..." />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="Yes">Yes</SelectItem>
+                                  <SelectItem value="No">No</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                            <div>
+                              <Label className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">BRCA negative?*</Label>
+                              <Select onValueChange={(v) => handleSelectChange("talcBrcaNegative", v)} value={formData.talcBrcaNegative}>
+                                <SelectTrigger className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary">
+                                  <SelectValue placeholder="Select..." />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="Yes">Yes</SelectItem>
+                                  <SelectItem value="No">No</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                            <div>
+                              <Label className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Diagnosed between ages 18 and 70?*</Label>
+                              <Select onValueChange={(v) => handleSelectChange("diagnosed18To70", v)} value={formData.diagnosed18To70}>
+                                <SelectTrigger className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary">
+                                  <SelectValue placeholder="Select..." />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="Yes">Yes</SelectItem>
+                                  <SelectItem value="No">No</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                            <div>
+                              <Label className="text-[11px] font-medium uppercase tracking-[0.22em] text-primary/70">Has Social Security Number?*</Label>
+                              <Select onValueChange={(v) => handleSelectChange("hasSsn", v)} value={formData.hasSsn}>
                                 <SelectTrigger className="mt-2 h-12 rounded-none border border-[#d8cdbd] bg-white focus:border-primary">
                                   <SelectValue placeholder="Select..." />
                                 </SelectTrigger>
